@@ -99,7 +99,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
     <button class="btn" onclick="doArah()">🧭 Tentukan Arah</button></div>
   <div id="arahResult" style="display:none;margin-top:8px"></div>
 </div></div>
-<div class="tab" id="tabJuri">
+<div class="tab" id="tabJuri"><div class="scroll">
   <div class="banner" id="targetBanner"><span class="dim">🎯 Belum ada comp target — tentukan di tab 🧭 Arah dulu.</span></div>
   <div id="compProgress"></div>
   <div class="secT" style="margin-top:4px">♟️ BOARD-MU <span class="dim" id="boardCount">(0/9)</span></div>
@@ -111,8 +111,8 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
   <div class="selbar">
     <button class="btn ghost" onclick="clearShop()">Reset shop</button>
     <button class="btn" onclick="doJudge()">⚡ Nilai Shop</button></div>
-  <div class="scroll" id="judgeResult" style="margin-top:8px"></div>
-</div>
+  <div id="judgeResult" style="margin-top:8px"></div>
+</div></div>
 <div class="tab" id="tabEcon"><div class="scroll" style="padding-bottom:8px">
   <div class="card">
     <div class="secT" style="margin-top:0">🧮 KALKULATOR RONDE</div>
@@ -313,6 +313,7 @@ function doArah(){
     </div>`;
   });
   box.style.display='block';box.innerHTML=h;box.scrollTop=0;
+  setTimeout(()=>{const el=$('arahResult');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},50);
 }
 function setTarget(compId){
   targetComp=COMPS.find(c=>c.id===compId)||null;
@@ -353,6 +354,7 @@ function doJudge(){
   const beli=res.filter(r=>r.verdict==='BELI').length;
   if(!beli)h+=`<div class="strat">💰 <b>Skip / reroll.</b> Tidak ada yang masuk rencana — simpan gold untuk interest, atau roll kalau butuh bintang 2.</div>`;
   box.innerHTML=h;box.scrollTop=0;
+  setTimeout(()=>{const el=$('judgeResult');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},50);
 }
 function buyHero(id){
   if(!boardIds.includes(id)&&boardIds.length<9){boardIds.push(id);$('boardCount').textContent=`(${boardIds.length}/9)`;}

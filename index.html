@@ -74,6 +74,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 <button class="on" onclick="goTab('tabArah',this)">🧭 Arah</button>
 <button onclick="goTab('tabJuri',this)">⚡ Juri Shop</button>
 <button onclick="goTab('tabEcon',this)">💰 Ekonomi</button>
+<button onclick="goTab('tabTutor',this)">🎓 Tutorial</button>
 <button onclick="goTab('tabMeta',this)">📊 Meta</button>
 <button onclick="goTab('tabData',this)">📚 Data</button>
 </nav>
@@ -122,6 +123,16 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
   <div class="secT">📖 PLAYBOOK EKONOMI <span class="dim">· Season 7.1</span></div>
   <div id="econPlaybook"></div>
 </div></div>
+<div class="tab" id="tabTutor"><div class="scroll" style="padding-bottom:8px">
+  <div class="card" style="border-color:var(--acc)">
+    <div class="secT" style="margin-top:0">🔥 KONSENSUS KOMUNITAS S7.1</div>
+    <div class="dim" style="margin-bottom:6px">Strategi yang paling sering diulang antar creator:</div>
+    <div id="consensusList"></div>
+  </div>
+  <div class="chips" id="tutorChips"></div>
+  <div id="guideList"></div>
+  <div class="dim" style="text-align:center;padding:8px">Ringkasan dari 20 sumber komunitas (YouTube, Facebook, blog). Isi = kata creator-nya, bukan fakta resmi Moonton.</div>
+</div></div>
 <div class="tab" id="tabMeta"><div class="scroll" id="metaList"></div></div>
 <div class="tab" id="tabData">
   <div class="chips" id="dataChips"></div>
@@ -130,7 +141,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 </div>
 </main>
 <script>
-let HEROES=[],SYNERGIES=[],COMMANDERS=[],EQUIPMENT=[],COMPS=[],ECON=null;
+let HEROES=[],SYNERGIES=[],COMMANDERS=[],EQUIPMENT=[],COMPS=[],ECON=null,GUIDES=[];
 let earlyIds=[],boardIds=[],shopIds=[],targetComp=null,dataTab='synergy';
 const $=id=>document.getElementById(id);
 function goTab(id,btn){
@@ -140,18 +151,19 @@ function goTab(id,btn){
   btn.classList.add('on');
 }
 async function loadData(){
-  const [h,s,c,e,m,ec]=await Promise.all([
+  const [h,s,c,e,m,ec,gu]=await Promise.all([
     fetch('data/heroes.json').then(r=>r.json()),
     fetch('data/synergies.json').then(r=>r.json()),
     fetch('data/commanders.json').then(r=>r.json()),
     fetch('data/equipment.json').then(r=>r.json()),
     fetch('data/meta_comps.json').then(r=>r.json()),
-    fetch('data/economy.json').then(r=>r.json())
+    fetch('data/economy.json').then(r=>r.json()),
+    fetch('data/community_guides.json').then(r=>r.json())
   ]);
-  HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;ECON=ec;
+  HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;ECON=ec;GUIDES=(gu.guides||gu);
   $('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
   renderEarly();renderBoardP();renderShopP();renderMeta();buildDataChips();renderDataList();renderTarget();
-  buildEconChips();renderEconPlaybook();
+  buildEconChips();renderEconPlaybook();buildTutorChips();renderGuides();
 }
 /* ============ ENGINE ============ */
 const byIdH=id=>HEROES.find(h=>h.id===id);
@@ -430,6 +442,49 @@ function renderEconPlaybook(){
   box.innerHTML=h;
 }
 </script>
+<script>
+/* ============ TUTORIAL KOMUNITAS ============ */
+let tutorTopic='all';
+const TOPIC_LABEL={economy:'💰 Ekonomi',rolling:'🎲 Rolling',commander:'👑 Commander',leveling:'📈 Leveling','star-up':'⭐ Bintang 3',items:'🛠️ Item',positioning:'📍 Positioning'};
+const CONSENSUS=[
+  ['💵 Garis 20 gold = +4 interest','Disebut Nazer, Abigiya, xcashshop — patokan ekonomi S7.1.'],
+  ['🔒 Scavenger awal + lock shop','Dibahas xcashshop, Abigiya, Webbybrob — kunci econ early game.'],
+  ['🚫 Jangan blind-roll','Tabung gold, roll sesuai plan level & upgrade inti (xcashshop, Abigiya).'],
+  ['⭐ Win condition = carry bintang 3','Kejar setelah board stabil; hindari hero yang contested (Webbybrob, Roelly, 12fiv5).'],
+  ['🗡️ Lancelot = pengecualian ekonomi','Skip interest, belanja agresif, kejar level 5 cepat (HartPlays).'],
+  ['🌀 Echomancer paling dibahas','Sinergi baru S7 yang paling sering jadi topik creator.']
+];
+function renderConsensus(){
+  $('consensusList').innerHTML=CONSENSUS.map(([t,d])=>`<div class="strat"><b>${t}</b><br><span class="dim">${d}</span></div>`).join('');
+}
+function buildTutorChips(){
+  renderConsensus();
+  const topics=['all','economy','rolling','commander','leveling','star-up','items','positioning'];
+  $('tutorChips').innerHTML=topics.map(t=>{
+    const n=t==='all'?GUIDES.length:GUIDES.filter(g=>(g.topics||[]).includes(t)).length;
+    return `<button class="chip${tutorTopic===t?' on':''}" onclick="tutorTopic='${t}';buildTutorChips();renderGuides()">${t==='all'?'Semua':TOPIC_LABEL[t]} (${n})</button>`;
+  }).join('');
+}
+function guideCard(g){
+  const pf={youtube:'🎥',facebook:'👥',blog:'📰',reddit:'🤖',tiktok:'🎵'}[g.platform]||'🔗';
+  const lang={id:'🇮🇩',en:'🇬🇧',tl:'🇵🇭'}[g.lang]||'';
+  const tw=(g.key_takeaways||[]).slice(0,4).map(k=>`<div class="strat">💡 ${k}</div>`).join('');
+  return `<div class="card">
+    <div style="font-weight:800">${pf} ${g.title} ${lang}</div>
+    <div class="dim" style="margin:3px 0">oleh <b>${g.creator}</b>${g.published?` · ${g.published}`:''}</div>
+    <div style="margin:4px 0">${(g.topics||[]).map(t=>`<span class="thr">${TOPIC_LABEL[t]||t}</span>`).join('')}</div>
+    ${tw}
+    ${g.notes?`<div class="dim">⚠️ ${g.notes}</div>`:''}
+    <a href="${g.url}" target="_blank" rel="noopener" class="btn" style="display:block;text-align:center;text-decoration:none;margin-top:8px;padding:10px">${g.platform==='youtube'?'▶ Tonton Video':g.platform==='facebook'?'👥 Buka Postingan':'🔗 Buka Sumber'}</a>
+  </div>`;
+}
+function renderGuides(){
+  const L=$('guideList');
+  const list=GUIDES.filter(g=>tutorTopic==='all'||(g.topics||[]).includes(tutorTopic));
+  L.innerHTML=list.length?list.map(guideCard).join(''):'<div class="empty">Belum ada panduan untuk topik ini.</div>';
+}
+</script>
 </body>
 </html>
+
 

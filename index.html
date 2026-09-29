@@ -11,7 +11,7 @@
 :root{--bg:#0d1220;--card:#141c30;--line:#24304a;--txt:#e8edf7;--dim:#8b96b0;--acc:#ffd34d;--grn:#3ecf8e;--red:#ff5d6c;--blu:#4da3ff;--pur:#b478ff;--ylw:#ffd34d;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;margin:0;}
-body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;display:flex;flex-direction:column;height:100dvh;overflow:hidden;}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;}
 header{flex:0 0 auto;padding:10px 12px 6px;border-bottom:1px solid var(--line);}
 header .ttl{font-weight:800;font-size:15px;letter-spacing:.5px;}
 header .ttl b{color:var(--acc);}
@@ -23,7 +23,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .tab{display:none;height:100%;flex-direction:column;padding:10px 12px;overflow:hidden;}
 .tab.on{display:flex;}
 .search{flex:0 0 auto;display:flex;gap:8px;margin-bottom:8px;}
-.search input{flex:1;background:#0f1626;border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:14px;padding:10px 12px;outline:none;}
+.search input{flex:1;background:#0f1626;border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:16px;padding:10px 12px;outline:none;}
 .chips{flex:0 0 auto;display:flex;gap:6px;overflow-x:auto;margin-bottom:8px;padding-bottom:2px;}
 .chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;border:1px solid var(--line);background:#101827;color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
 .chip.on{background:var(--acc);border-color:var(--acc);color:#1a1206;}
@@ -45,6 +45,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;}
 .secT{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--acc);margin:10px 0 6px;}
 .synrow{display:flex;gap:8px;align-items:center;padding:7px 8px;background:#0f1626;border-radius:10px;margin-bottom:6px;}
+.synrow>div{min-width:0;}
 .synrow .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
 .synrow .nm{font-weight:700;font-size:13px;}
 .synrow .eff{font-size:11px;color:var(--dim);margin-top:2px;line-height:1.4;}
@@ -52,8 +53,10 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .dim{color:var(--dim);font-size:11px;}
 .scroll{flex:1 1 auto;min-height:0;overflow-y:auto;}
 .comp-hero{display:inline-block;margin:2px;text-align:center;width:56px;vertical-align:top;position:relative;}
-.comp-hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;opacity:.45;}
+.comp-hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;}
+.comp-hero.dim img{opacity:.45;}
 .comp-hero.owned img{opacity:1;border:2px solid var(--grn);}
+.comp-hero .ph{width:44px;height:44px;border-radius:50%;background:#22304d;display:inline-flex;align-items:center;justify-content:center;color:var(--dim);font-size:20px;font-weight:800;}
 .comp-hero .nm{font-size:9px;line-height:1.15;}
 .comp-hero .chk{position:absolute;top:-2px;right:2px;font-size:12px;}
 .dlist{flex:1 1 auto;overflow-y:auto;display:flex;flex-direction:column;gap:6px;min-height:0;}
@@ -65,7 +68,7 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .v-BELI{color:#06281a;background:var(--grn);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
 .v-PERTIMBANGKAN{color:#2a1f06;background:var(--ylw);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
 .v-SKIP{color:var(--dim);background:#1a2436;border:1px solid var(--line);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
-.banner{background:linear-gradient(135deg,#1c2a15,#141c30);border:1px solid var(--grn);border-radius:14px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.banner{background:linear-gradient(135deg,#1c2a15,#141c30);border:1px solid var(--grn);border-radius:14px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 </style>
 </head>
 <body>
@@ -86,16 +89,16 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
   <div class="grid" id="cmdGrid" style="flex:0 1 auto"></div>
   <div id="cmdDetail" style="margin-top:8px"></div>
 </div></div>
-<div class="tab" id="tabArah">
+<div class="tab" id="tabArah"><div class="scroll">
   <div id="arahCmdBanner"></div>
   <div class="dim" style="margin-bottom:6px">Pilih hero yang dikasih shop di <b>awal game</b> (3–6 hero) — app yang mutusin kamu main comp apa.</div>
   <div class="search"><input id="qa" placeholder="Cari hero…" oninput="renderEarly()"></div>
-  <div class="grid" id="earlyGrid"></div>
+  <div class="grid" id="earlyGrid" style="flex:none;overflow:visible"></div>
   <div class="selbar"><span class="dim" id="earlyCount">0 dipilih</span>
     <button class="btn ghost" onclick="clearEarly()">Reset</button>
     <button class="btn" onclick="doArah()">🧭 Tentukan Arah</button></div>
-  <div class="scroll" id="arahResult" style="display:none;margin-top:8px"></div>
-</div>
+  <div id="arahResult" style="display:none;margin-top:8px"></div>
+</div></div>
 <div class="tab" id="tabJuri">
   <div class="banner" id="targetBanner"><span class="dim">🎯 Belum ada comp target — tentukan di tab 🧭 Arah dulu.</span></div>
   <div id="compProgress"></div>
@@ -303,7 +306,7 @@ function doArah(){
       <div style="font-weight:800">${i===0?'⭐ ':''}${c.name} <span class="dim">· ${r.hit} hero cocok${r.synHit?` · ${r.synHit} sinergi nyambung`:''}${r.cmdMatch?' · 🧑‍✈️ cocok commandermu':''}</span></div>
       <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
       <div>${(c.core_heroes||[]).slice(0,9).map(n=>{const hh=byNameH(n);
-        return hh?`<span class="comp-hero ${earlyIds.includes(hh.id)?'owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${earlyIds.includes(hh.id)?'<span class="chk">✅</span>':''}</span>`:'';}).join('')}</div>
+        return hh?`<span class="comp-hero ${earlyIds.includes(hh.id)?'owned':'dim'}">${heroImg(hh)}<span class="nm">${hh.name}</span>${earlyIds.includes(hh.id)?'<span class="chk">✅</span>':''}</span>`:'';}).join('')}</div>
       ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}
       ${c.commander?`<div class="strat">👑 Commander: <b>${c.commander}</b></div>`:''}
       <button class="btn" style="margin-top:6px" onclick="setTarget('${c.id}')">▶ Main Comp Ini</button>
@@ -330,7 +333,7 @@ function renderTarget(){
     <div class="dim">${have}/${(c.core_heroes||[]).length} hero inti terkumpul${cmdLine}${c.commander?` · 👑 saran: ${c.commander}`:''}${c.carry?` · 🔥 ${c.carry}`:''}</div></div>
     <button class="btn ghost small" style="margin-left:auto" onclick="targetComp=null;renderTarget()">Ganti</button>`;
   cp.innerHTML=`<div>${(c.core_heroes||[]).slice(0,10).map(n=>{const hh=byNameH(n);
-    return hh?`<span class="comp-hero${owned.has(n)?' owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${owned.has(n)?'<span class="chk">✅</span>':''}</span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>`;
+    return hh?`<span class="comp-hero${owned.has(n)?' owned':' dim'}">${heroImg(hh)}<span class="nm">${hh.name}</span>${owned.has(n)?'<span class="chk">✅</span>':''}</span>`:`<span class="comp-hero"><span class="ph">?</span><span class="nm">${n}</span></span>`;}).join('')}</div>`;
 }
 function doJudge(){
   const box=$('judgeResult');
@@ -362,7 +365,7 @@ function renderMeta(){
   box.innerHTML=COMPS.map(c=>`<div class="card">
     <div class="t" style="font-weight:800">${c.name} ${c.unverified?'<span class="dim">(belum terverifikasi)</span>':''}</div>
     <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
-    <div>${(c.core_heroes||[]).map(n=>{const h=byNameH(n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>
+    <div>${(c.core_heroes||[]).map(n=>{const h=byNameH(n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="ph">?</span><span class="nm">${n}</span></span>`;}).join('')}</div>
     ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}
     ${c.commander?`<div class="strat">👑 Commander: <b>${c.commander}</b></div>`:''}
     ${c.early_game?`<div class="dim">📝 ${c.early_game}</div>`:''}
@@ -374,23 +377,24 @@ function buildDataChips(){
   const tabs=[['synergy','⚡ Sinergi'],['hero','🦸 Hero'],['commander','👑 Commander'],['item','🛠️ Item']];
   $('dataChips').innerHTML=tabs.map(([id,l])=>`<button class="chip${dataTab===id?' on':''}" onclick="dataTab='${id}';buildDataChips();renderDataList()">${l}</button>`).join('');
 }
+function trunc(s,n){s=s||'';if(s.length<=n)return s;const c=s.slice(0,n);const sp=c.lastIndexOf(' ');return (sp>0?c.slice(0,sp):c)+'…';}
 function renderDataList(){
   const q=$('qd').value.toLowerCase(),L=$('dataList');L.innerHTML='';
   if(dataTab==='synergy'){
     SYNERGIES.filter(s=>s.name.toLowerCase().includes(q)).forEach(s=>{
-      const th=(s.thresholds||[]).map(t=>`<span class="thr">${t.count}: ${(t.effect||'').slice(0,80)}</span>`).join('');
+      const th=(s.thresholds||[]).map(t=>`<span class="thr">${t.count}: ${trunc(t.effect,80)}</span>`).join('');
       L.innerHTML+=`<div class="drow"><div class="t">${s.name} <span class="dim">· ${s.type}</span></div>
-        <div class="d">${(s.description||'').slice(0,160)}</div><div style="margin-top:4px">${th||'<span class="dim">threshold belum tersedia (S7)</span>'}</div></div>`;
+        <div class="d">${trunc(s.description,160)}</div><div style="margin-top:4px">${th||'<span class="dim">threshold belum tersedia (S7)</span>'}</div></div>`;
     });
   }else if(dataTab==='hero'){
     HEROES.filter(h=>h.name.toLowerCase().includes(q)).sort((a,b)=>a.cost-b.cost).forEach(h=>{
       L.innerHTML+=`<div class="drow"><div class="t">${h.name} <span class="dim">· ${h.cost}💰${h.carry?' · 🔥carry':''}</span></div>
         <div class="d">Sinergi: ${(h.synergies||[]).map(id=>{const x=synById(id);return x?x.name:id;}).join(', ')}</div>
-        ${h.skill_name?`<div class="d">✨ <b>${h.skill_name}</b>: ${(h.skill_desc||'').slice(0,140)}</div>`:''}</div>`;
+        ${h.skill_name?`<div class="d">✨ <b>${h.skill_name}</b>: ${trunc(h.skill_desc,140)}</div>`:''}</div>`;
     });
   }else if(dataTab==='commander'){
     COMMANDERS.filter(c=>c.name.toLowerCase().includes(q)).forEach(c=>{
-      const sk=(c.skills||[]).filter(s=>s.name&&s.name!=='Unverified').slice(0,3).map(s=>`<div class="d">✨ <b>${s.name}</b>: ${(s.description||'').slice(0,120)}</div>`).join('');
+      const sk=(c.skills||[]).filter(s=>s.name&&s.name!=='Unverified').slice(0,3).map(s=>`<div class="d">✨ <b>${s.name}</b>: ${trunc(s.description,120)}</div>`).join('');
       L.innerHTML+=`<div class="drow"><div class="t">${c.name}${c.meta?' <span class="dim">· meta</span>':''}</div>${sk||'<div class="d dim">skill belum terverifikasi (S7)</div>'}</div>`;
     });
   }else{

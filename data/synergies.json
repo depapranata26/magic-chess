@@ -1,0 +1,547 @@
+{
+  "patch": "Season 7.1 (Chrono Echoes)",
+  "data_status": "Season 7.1 (Chrono Echoes). Wiki Fandom hanya s.d. Season 3; 8 sinergi (astro_power, defender, dragoncaller, enchanted_tales, kishin, necrokeep, swordsman, swiftblade) ditambahkan sebagai stub unverified karena direferensikan hero pool/komposisi S7.",
+  "sources": [
+    "https://mobile-legends.fandom.com/wiki/MCGG:Synergy",
+    "https://mobile-legends.fandom.com/api.php?action=parse&page=MCGG:Synergy&prop=wikitext&format=json",
+    "Module:MC synergy/data (wiki Fandom, rev terakhir 2025-07-04)",
+    "https://en.moonton.com/news/364.html (pengumuman resmi Season 7 Chrono Echoes)"
+  ],
+  "removed_in_season_3_wiki": [
+    "Astro Power",
+    "Defender",
+    "Dragon Altar",
+    "Eruditio",
+    "Faeborn",
+    "Northern Vale",
+    "Summoner",
+    "Support",
+    "Swordsman"
+  ],
+  "synergies": [
+    {
+      "id": "aspirants",
+      "name": "Aspirants",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Create a Faith Chest that can be opened once. Gain Faith Points each round (amount increases per round, up to 100 points). Opening the Chest grants rewards based on current Faith Points accumulated, and each Faith Point provides 0.1% extra Skill DMG to all Aspirants.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Faith Point increases by 1 per round."
+        },
+        {
+          "count": 4,
+          "effect": "Faith Point increases by 5 per round."
+        },
+        {
+          "count": 6,
+          "effect": "Faith Point increases by 20 per round."
+        },
+        {
+          "count": 10,
+          "effect": "Faith Point increases by 100 per round. Upon opening the Chest, instantly receive the rewards for 999 Faith Point(s)."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "astro_power",
+      "name": "Astro Power",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "bruiser",
+      "name": "Bruiser",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "When Bruisers perform a Basic ATK, there's a chance that their next Basic ATK will launch faster with higher DMG. The enhanced Basic ATKs have a chance to launch an extra one.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "20% chance to trigger. Increase Basic ATK DMG by 165%."
+        },
+        {
+          "count": 4,
+          "effect": "40% chance to trigger. Increase Basic ATK DMG by 165%."
+        },
+        {
+          "count": 6,
+          "effect": "60% chance to trigger. Increase Basic ATK DMG by 165%."
+        }
+      ]
+    },
+    {
+      "id": "dauntless",
+      "name": "Dauntless",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allies gain Shield. Dauntless Heroes gain extra Shield.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "All allies gain 5% Shield. Dauntless Heroes gain extra 20% Shield."
+        },
+        {
+          "count": 4,
+          "effect": "All allies gain 10% Shield. Dauntless Heroes gain extra 45% Shield."
+        },
+        {
+          "count": 6,
+          "effect": "All allies gain 20% Shield. Dauntless Heroes gain extra 85% Shield."
+        }
+      ]
+    },
+    {
+      "id": "dawnbringer",
+      "name": "Dawnbringer",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Obtain exclusive Dawnbringer Equipment that can grow stronger.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Provide 1 piece(s) of Dawnbringer Equipment."
+        },
+        {
+          "count": 4,
+          "effect": "Provide 1 additional piece(s) of Dawnbringer Equipment with 6 stack(s)."
+        },
+        {
+          "count": 6,
+          "effect": "Provide 1 more piece(s) of Dawnbringer Equipment with 12 stack(s)."
+        },
+        {
+          "count": 10,
+          "effect": "Gain an additional Supreme Crown. All Dawnbringer Equipment grows 18 time(s)."
+        }
+      ]
+    },
+    {
+      "id": "defender",
+      "name": "Defender",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "doomsworn",
+      "name": "Doomsworn",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Summon Hanabi to join the battle. She can be equipped with items.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Summon 1-Star Hanabi."
+        },
+        {
+          "count": 4,
+          "effect": "Summon 2-Star Hanabi."
+        },
+        {
+          "count": 6,
+          "effect": "Summon 3-Star Hanabi."
+        },
+        {
+          "count": 10,
+          "effect": "Summon 4-Star Hanabi"
+        }
+      ]
+    },
+    {
+      "id": "dragon_altar",
+      "name": "Dragon Altar",
+      "type": "faction",
+      "season_documented": "Season 2 (Blessing of Embers) — wiki",
+      "description": "Generate special tiles on the battlefield. Heroes on these tiles gain DMG Increase and Hybrid DEF, with Dragon Altar Heroes receiving 3 times the bonus.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Create 4 special tile(s). Gain 8% DMG Increase and 8 Hybrid DEF."
+        },
+        {
+          "count": 4,
+          "effect": "Create 6 special tile(s). Gain 12% DMG Increase and 12 Hybrid DEF."
+        },
+        {
+          "count": 6,
+          "effect": "Turn all tiles into special tiles. Gain 18% extra DMG and 18 Hybrid DEF."
+        },
+        {
+          "count": 10,
+          "effect": "Turn all tiles into special tiles. Gain 40% extra DMG and 40 Hybrid DEF. Additionally, a dragon descends at the start of battle, dealing True DMG equal to 50% of enemies' HP and stunning them for 3s."
+        }
+      ],
+      "notes": "Dihapus/dihentikan di Season 3 wiki. Dikonfirmasi resmi (en.moonton.com) kembali hadir di Season 7 Chrono Echoes — angka Season 7 BELUM terverifikasi; angka di atas dari Season 2 wiki.",
+      "unverified_for_season_7": true
+    },
+    {
+      "id": "dragoncaller",
+      "name": "Dragoncaller",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "echomancer",
+      "name": "Echomancer",
+      "type": "unknown",
+      "season_documented": "Season 7 (Chrono Echoes) — hanya dari pengumuman resmi Moonton; tidak ada di wiki Fandom",
+      "description": "Echomancer will turn back the clock by summoning a random 5-cost Hero from a past season to assist players in battle. (Pengumuman resmi Season 7 Chrono Echoes, en.moonton.com)",
+      "thresholds": [],
+      "notes": "Baru di Season 7 (Chrono Echoes). Tidak ada data threshold di wiki/sumber resmi yang dapat diakses.",
+      "unverified": true,
+      "unverified_community_observations": "Komunitas (YouTube, belum terverifikasi): kombo '6 Echomancer 6 Defender 2 Shadeweaver'; mekanik stacking hingga 999 stack."
+    },
+    {
+      "id": "emberlord",
+      "name": "Emberlord",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "When an Emberlord Hero dies, a portion of their HP and Hybrid ATK will be evenly distributed among surviving Emberlord Heroes.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Share 30% HP, 40% Hybrid ATK."
+        },
+        {
+          "count": 4,
+          "effect": "Share 30% HP, 60% Hybrid ATK."
+        },
+        {
+          "count": 6,
+          "effect": "Share 30% HP, 80% Hybrid ATK."
+        },
+        {
+          "count": 10,
+          "effect": "Share 30% HP, 180% Hybrid ATK. When an Emberlord Hero dies, they will ressurect and restore 30% HP."
+        }
+      ]
+    },
+    {
+      "id": "enchanted_tales",
+      "name": "Enchanted Tales",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "exorcist",
+      "name": "Exorcist",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Obtain Exorcist's Seal. When an Exorcist Hero dies, they transform into the Hero carrying the Exorcist's Seal and cast their Skill once before disappearing.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Obtain Exorcist's Seal (Basic). When an Exorcist hero dies, they deal 80%/90%/100% Skill DMG of the Hero they transformed into based on their own Star level."
+        },
+        {
+          "count": 4,
+          "effect": "Obtain Exorcist's Seal (Advanced). When an Exorcist hero dies, they deal 90%/100%/120% Skill DMG of the Hero they transformed into based on their own Star level."
+        }
+      ]
+    },
+    {
+      "id": "kishin",
+      "name": "Kishin",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "luminexus",
+      "name": "Luminexus",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Enemy Heroes damaged by Luminexus Heroes will be linked together. All linked targets share incoming DMG and have reduced Hybrid DEF.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Link up to 2 Heroes together and reduce their Hybrid DEF by 30."
+        },
+        {
+          "count": 4,
+          "effect": "Link up to 4 Heroes together and reduce their Hybrid DEF by 60."
+        },
+        {
+          "count": 6,
+          "effect": "No limit to the number of linked Heroes. Linked Heroes have their Hybrid DEF reduced by 90."
+        },
+        {
+          "count": 10,
+          "effect": "No limit to the number of linked Heroes. Linked Heroes have their Hybrid DEF reduced by 180 and take 2000 True DMG per second."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "mage",
+      "name": "Mage",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allies gain Magic ATK. Mages gain extra Magic ATK.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "All allies gain 10% Magic ATK. Mages gain extra 40% Magic ATK."
+        },
+        {
+          "count": 4,
+          "effect": "All allies gain 20% Magic ATK. Mages gain extra 80% Magic ATK."
+        },
+        {
+          "count": 6,
+          "effect": "All allies gain 30% Magic ATK. Mages gain extra 120% Magic ATK."
+        }
+      ]
+    },
+    {
+      "id": "marksman",
+      "name": "Marksman",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allies gain ATK Speed. Marksmen's Basic ATKs reduce target's Physical DEF.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "All allies gain 5% ATK Speed. Marksmen's Basic ATKs reduce target's Physical DEF by 6, up to 6 stack(s)."
+        },
+        {
+          "count": 4,
+          "effect": "All allies gain 10% ATK Speed. Marksmen's Basic ATKs reduce target's Physical DEF by 8, up to 7 stack(s)."
+        },
+        {
+          "count": 6,
+          "effect": "All allies gain 20% ATK Speed. Marksmen's Basic ATKs reduce target's Physical DEF by 16, up to 8 stack(s)."
+        }
+      ]
+    },
+    {
+      "id": "metro_zero",
+      "name": "Metro Zero",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allied Heroes gain Hybrid ATK based on the number of activated Synergy types. Gain DMG Reduction upon activating 8 Synergies.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Each activated Synergy increases Hybrid ATK by 2%. Gain 10% DMG Reduction upon activating 8 Synergies."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "mistbender",
+      "name": "Mistbender",
+      "type": "unknown",
+      "season_documented": "Season 7 (Chrono Echoes) — hanya dari pengumuman resmi Moonton; tidak ada di wiki Fandom",
+      "description": "Lets players collect tokens throughout battle and spend them in a special Shop. Through additional Equipment and Hero buffs, players can find more ways to adjust and strengthen their lineup as the match unfolds. (Pengumuman resmi Season 7 Chrono Echoes, en.moonton.com)",
+      "thresholds": [],
+      "notes": "Baru di Season 7 (Chrono Echoes). Tidak ada data threshold di wiki/sumber resmi yang dapat diakses.",
+      "unverified": true,
+      "unverified_community_observations": "Komunitas (YouTube, belum terverifikasi): video berjudul '3/3 MISTBENDER' mengindikasikan threshold 3."
+    },
+    {
+      "id": "necrokeep",
+      "name": "Necrokeep",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh nama komposisi meta, detail threshold & efek belum terverifikasi."
+    },
+    {
+      "id": "phasewarper",
+      "name": "Phasewarper",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "The first time HP drops below 40%, immediately move to a safe location while recovering HP and restoring Mana.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "35% HP, 50% Mana."
+        },
+        {
+          "count": 4,
+          "effect": "70% HP, 100% Mana."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "scavenger",
+      "name": "Scavenger",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Get a random Hero from the Shop at the start of each round.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Get 1 random Hero(es)."
+        },
+        {
+          "count": 3,
+          "effect": "Get 1 random Hero(es) and 2 Gold."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "shadeweaver",
+      "name": "Shadeweaver",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "When battle starts, fierce winds sweep across the battlefield from behind Shadeweaver heroes, granting ATK Speed to allies and knocking enemies airborne along their path.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Provide 25% ATK Speed and inflict airborne for 1s."
+        },
+        {
+          "count": 4,
+          "effect": "Provide 60% ATK Speed and inflict airborne for 1s."
+        }
+      ],
+      "notes": "Dikonfirmasi resmi kembali hadir di Season 7 Chrono Echoes; angka di atas dari data Season 2/3 wiki."
+    },
+    {
+      "id": "shadowcell",
+      "name": "Shadowcell",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Each Gold spent on Shop refresh strengthens Shadowcell Heroes. After winning a battle, each surviving Shadowcell Hero has a chance to earn 1 Gold.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Every 1 Gold spent increases DMG by 0.3%. 30% chance to earn Gold."
+        },
+        {
+          "count": 4,
+          "effect": "Every 1 Gold spent increases DMG by 0.6%. 30% chance to earn Gold."
+        },
+        {
+          "count": 6,
+          "effect": "Every 1 Gold spent increases DMG by 0.9%. 30% chance to earn Gold."
+        },
+        {
+          "count": 10,
+          "effect": "Every 1 Gold spent increases DMG by 3%. 100% chance to earn Gold. Shadowcell Heroes gain 2 Gold when they kill an enemy."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "spectre",
+      "name": "SPECTRE",
+      "type": "unknown",
+      "season_documented": "Season 7 (Chrono Echoes) — hanya dari pengumuman resmi Moonton; tidak ada di wiki Fandom",
+      "description": "Combine and upgrade SPECTRE Heroes to progress through the Synergy and eventually unlock Alpha, MCGG's first-ever 7-Gold Hero. (Pengumuman resmi Season 7 Chrono Echoes, en.moonton.com)",
+      "thresholds": [],
+      "notes": "Baru di Season 7 (Chrono Echoes). Tidak ada data threshold di wiki/sumber resmi yang dapat diakses.",
+      "unverified": true
+    },
+    {
+      "id": "starbelle",
+      "name": "Starbelle",
+      "type": "unknown",
+      "season_documented": "Season 7 (Chrono Echoes) — hanya dari pengumuman resmi Moonton; tidak ada di wiki Fandom",
+      "description": "Equip a Hero with a special Lightstick to turn them into a 'Fan', allowing them to share bonuses with Starbelle Heroes. Once the Synergy is activated, the battlefield transforms with exclusive music and audio-visual effects. (Pengumuman resmi Season 7 Chrono Echoes, en.moonton.com)",
+      "thresholds": [],
+      "notes": "Baru di Season 7 (Chrono Echoes). Tidak ada data threshold di wiki/sumber resmi yang dapat diakses.",
+      "unverified": true,
+      "unverified_community_observations": "Komunitas (YouTube, belum terverifikasi): video berjudul '10/10 STARBELLE' mengindikasikan threshold 10."
+    },
+    {
+      "id": "stargazer",
+      "name": "Stargazer",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allies recover Mana per second. Stargazers recover extra Mana per second.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "All allies recover 2 Mana per second. Stargazers recover extra 6 Mana per second."
+        },
+        {
+          "count": 4,
+          "effect": "All allies recover 4 Mana per second. Stargazers recover extra 12 Mana per second."
+        },
+        {
+          "count": 6,
+          "effect": "All allies recover 8 Mana per second. Stargazers recover extra 16 Mana per second."
+        }
+      ]
+    },
+    {
+      "id": "starwing",
+      "name": "Starwing",
+      "type": "faction",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "Deploy a draggable spaceship in the Battle Area. Heroes within range gain extra DMG and Max HP, while Starwing Heroes gain 2 times the bonus effects.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "Enhance allied Heroes within 4 tiles, granting 8% extra DMG and 300 Max HP."
+        },
+        {
+          "count": 4,
+          "effect": "Enhance allied Heroes within 8 tiles, granting 8% extra DMG and 500 Max HP."
+        },
+        {
+          "count": 6,
+          "effect": "Deploy 2 spaceships that enhance allied Heroes within 8 tiles, granting 16% extra DMG and 700 Max HP. Heroes can receive bonus from both spaceships at the same time."
+        },
+        {
+          "count": 10,
+          "effect": "Spaceship's bonus effects now cover the entire battlefield, providing 24% extra DMG and 1400 Max HP. During battle, it deals 1500 True DMG to enemies every 3 seconds."
+        }
+      ],
+      "notes": "Baru diperkenalkan di Season 3 (dibanding Season 2 wiki)."
+    },
+    {
+      "id": "swiftblade",
+      "name": "Swiftblade",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh data hero pool S7/S7.1, tetapi detail threshold & efek belum terverifikasi (tidak ada di wiki Fandom; wiki hanya s.d. Season 3)."
+    },
+    {
+      "id": "swordsman",
+      "name": "Swordsman",
+      "type": "unknown",
+      "thresholds": [],
+      "unverified": true,
+      "notes": "Direferensikan oleh nama komposisi meta, detail threshold & efek belum terverifikasi."
+    },
+    {
+      "id": "weapon_master",
+      "name": "Weapon Master",
+      "type": "role",
+      "season_documented": "Season 3 (Cosmic Traders) — data terbaru di wiki",
+      "description": "All allies gain Hybrid Lifesteal. Weapon Masters gain extra Hybrid Lifesteal and extra Physical ATK when their HP drops below 70%.",
+      "thresholds": [
+        {
+          "count": 2,
+          "effect": "All allies gain 5% Hybrid Lifesteal. Weapon Masters gain extra 10% Hybrid Lifesteal and 50% Physical ATK."
+        },
+        {
+          "count": 4,
+          "effect": "All allies gain 10% Hybrid Lifesteal. Weapon Masters gain extra 20% Hybrid Lifesteal and 100% Physical ATK."
+        },
+        {
+          "count": 6,
+          "effect": "All allies gain 15% Hybrid Lifesteal. Weapon Masters gain extra 30% Hybrid Lifesteal and 180% Physical ATK."
+        }
+      ]
+    }
+  ]
+}

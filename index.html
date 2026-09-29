@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0d1220">
+<title>MC Lineup Coach — Peracik Lineup Magic Chess</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<style>
+:root{--bg:#0d1220;--card:#141c30;--line:#24304a;--txt:#e8edf7;--dim:#8b96b0;--acc:#ffd34d;--grn:#3ecf8e;--red:#ff5d6c;--blu:#4da3ff;--pur:#b478ff;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;margin:0;}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;
+display:flex;flex-direction:column;height:100dvh;overflow:hidden;}
+header{flex:0 0 auto;padding:10px 12px 6px;border-bottom:1px solid var(--line);}
+header .ttl{font-weight:800;font-size:15px;letter-spacing:.5px;}
+header .ttl b{color:var(--acc);}
+header .sub{font-size:11px;color:var(--dim);}
+nav{flex:0 0 auto;display:flex;border-bottom:1px solid var(--line);}
+nav button{flex:1;background:none;border:none;color:var(--dim);font-size:12px;font-weight:700;padding:11px 4px;cursor:pointer;border-bottom:2px solid transparent;}
+nav button.on{color:var(--acc);border-bottom-color:var(--acc);}
+main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
+.tab{display:none;height:100%;flex-direction:column;padding:10px 12px;overflow:hidden;}
+.tab.on{display:flex;}
+.search{flex:0 0 auto;display:flex;gap:8px;margin-bottom:8px;}
+.search input{flex:1;background:#0f1626;border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:14px;padding:10px 12px;outline:none;}
+.chips{flex:0 0 auto;display:flex;gap:6px;overflow-x:auto;margin-bottom:8px;padding-bottom:2px;}
+.chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;border:1px solid var(--line);background:#101827;color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#1a1206;}
+.grid{flex:1 1 auto;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start;padding-bottom:8px;min-height:0;}
+.hero{cursor:pointer;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;}
+.hero:active{transform:scale(.96);}
+.hero.sel{border-color:var(--grn);background:#12291f;}
+.hero .nm{font-size:10.5px;text-align:center;line-height:1.2;}
+.hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;}
+.cost{position:absolute;top:4px;left:6px;font-size:10px;font-weight:800;background:#000a;padding:2px 6px;border-radius:8px;color:var(--acc);}
+.carry{position:absolute;top:4px;right:6px;font-size:10px;}
+.selbar{flex:0 0 auto;display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.btn{flex:1;background:var(--acc);border:none;border-radius:12px;color:#1a1206;font-weight:800;font-size:14px;padding:13px;cursor:pointer;}
+.btn:active{transform:scale(.98);}
+.btn.ghost{background:#1a2436;color:var(--txt);border:1px solid var(--line);flex:0 0 auto;padding:13px 16px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;}
+.secT{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--acc);margin:10px 0 6px;}
+.synrow{display:flex;gap:8px;align-items:center;padding:7px 8px;background:#0f1626;border-radius:10px;margin-bottom:6px;}
+.synrow .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+.synrow .nm{font-weight:700;font-size:13px;}
+.synrow .cnt{margin-left:auto;font-size:12px;font-weight:800;color:var(--acc);white-space:nowrap;}
+.synrow .eff{font-size:11px;color:var(--dim);margin-top:2px;}
+.synrow.off{opacity:.45;}
+.synrow .next{font-size:11px;color:var(--blu);}
+.lu-grid{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0;}
+.lu-hero{display:flex;flex-direction:column;align-items:center;gap:4px;width:62px;}
+.lu-hero img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#0f1626;border:2px solid var(--line);}
+.lu-hero .nm{font-size:10px;text-align:center;line-height:1.15;}
+.lu-hero .cs{font-size:10px;color:var(--acc);font-weight:800;}
+.lu-hero .cb{font-size:9px;color:var(--red);font-weight:800;}
+.strat{background:#0f1626;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:8px 10px;font-size:12.5px;margin-bottom:6px;line-height:1.45;}
+.dim{color:var(--dim);font-size:11px;}
+.scroll{flex:1 1 auto;min-height:0;overflow-y:auto;}
+.comp-hero{display:inline-block;margin:2px;text-align:center;width:56px;vertical-align:top;}
+.comp-hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;}
+.comp-hero .nm{font-size:9px;line-height:1.15;}
+.dlist{flex:1 1 auto;overflow-y:auto;display:flex;flex-direction:column;gap:6px;min-height:0;}
+.drow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:12.5px;}
+.drow .t{font-weight:700;}
+.drow .d{color:var(--dim);font-size:11.5px;margin-top:3px;line-height:1.4;}
+.thr{display:inline-block;background:#0f1626;border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:10.5px;margin:2px 4px 2px 0;}
+.empty{color:var(--dim);text-align:center;padding:18px 10px;font-size:12.5px;}
+</style>
+</head>
+<body>
+<header><div class="ttl">♟️ <b>MC</b> Lineup Coach</div><div class="sub" id="dataInfo">Magic Chess · Season 7.1 Chrono Echoes</div></header>
+<nav>
+<button class="on" onclick="goTab('tabRacik',this)">🎴 Racik</button>
+<button onclick="goTab('tabLengkapi',this)">➕ Lengkapi</button>
+<button onclick="goTab('tabMeta',this)">📊 Meta</button>
+<button onclick="goTab('tabData',this)">📚 Data</button>
+</nav>
+<main>
+<div class="tab on" id="tabRacik">
+  <div class="dim" style="margin-bottom:6px">Pilih hero yang kamu punya, lalu racik lineup terkuat.</div>
+  <div class="chips" id="capChips"></div>
+  <div class="search"><input id="q" placeholder="Cari hero…" oninput="renderPool()"></div>
+  <div class="chips" id="costChips"></div>
+  <div class="grid" id="poolGrid"></div>
+  <div class="selbar"><span class="dim" id="poolCount">0 dipilih</span>
+    <button class="btn ghost" onclick="clearPool()">Reset</button>
+    <button class="btn" onclick="doRacik()">⚡ Racik Lineup</button></div>
+  <div class="scroll" id="racikResult" style="display:none;margin-top:8px"></div>
+</div>
+<div class="tab" id="tabLengkapi">
+  <div class="dim" style="margin-bottom:6px">Pilih hero yang sudah ada di board-mu.</div>
+  <div class="search"><input id="qb" placeholder="Cari hero…" oninput="renderBoard()"></div>
+  <div class="grid" id="boardGrid" style="max-height:38%"></div>
+  <div class="selbar"><span class="dim" id="boardCount">0/9</span>
+    <button class="btn ghost" onclick="clearBoard()">Reset</button>
+    <button class="btn" onclick="doLengkapi()">🔍 Saran Berikutnya</button></div>
+  <div class="scroll" id="lengkapiResult" style="margin-top:8px"></div>
+</div>
+<div class="tab" id="tabMeta"><div class="scroll" id="metaList"></div></div>
+<div class="tab" id="tabData">
+  <div class="chips" id="dataChips"></div>
+  <div class="search"><input id="qd" placeholder="Cari…" oninput="renderDataList()"></div>
+  <div class="dlist" id="dataList"></div>
+</div>
+</main>
+<script>
+let HEROES=[],SYNERGIES=[],COMMANDERS=[],EQUIPMENT=[],COMPS=[];
+let pool=[],poolCost='all',board=[],boardCap=8,dataTab='synergy';
+const COST_COLOR={1:'#9fb3c8',2:'#3ecf8e',3:'#4da3ff',4:'#b478ff',5:'#ffd34d',7:'#ff5d6c'};
+function goTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+async function loadData(){
+  const [h,s,c,e,m]=await Promise.all([
+    fetch('data/heroes.json').then(r=>r.json()),
+    fetch('data/synergies.json').then(r=>r.json()),
+    fetch('data/commanders.json').then(r=>r.json()),
+    fetch('data/equipment.json').then(r=>r.json()),
+    fetch('data/meta_comps.json').then(r=>r.json())
+  ]);
+  HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;
+  document.getElementById('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
+  buildCapChips();buildCostChips();renderPool();renderBoard();renderMeta();buildDataChips();renderDataList();
+}
+/* ============ ENGINE ============ */
+const byIdH=id=>HEROES.find(h=>h.id===id);
+const synById=id=>SYNERGIES.find(s=>s.id===id);
+function synCounts(list){const c={};list.forEach(h=>(h.synergies||[]).forEach(s=>c[s]=(c[s]||0)+1));return c;}
+function activeSyn(counts){
+  return Object.entries(counts).map(([sid,c])=>{
+    const s=synById(sid);if(!s)return null;
+    const th=(s.thresholds||[]).slice().sort((a,b)=>a.count-b.count);
+    let lvl=0,eff=null;
+    th.forEach(t=>{if(c>=t.count){lvl++;eff=t;}});
+    const next=th.find(t=>t.count>c)||null;
+    return{syn:s,count:c,level:lvl,active:eff,effect:eff?eff.effect:null,next,unverified:!th.length};
+  }).filter(Boolean).sort((a,b)=>(b.level-a.level)||(b.count-a.count));
+}
+function scoreLineup(hs){
+  const counts=synCounts(hs);let sc=0;
+  Object.entries(counts).forEach(([sid,c])=>{
+    const s=synById(sid);if(!s)return;
+    const th=(s.thresholds||[]).slice().sort((a,b)=>a.count-b.count);
+    if(!th.length){sc+=c*0.5;return;}
+    let lvl=0;th.forEach(t=>{if(c>=t.count)lvl++;});
+    if(lvl>0)sc+=lvl*lvl*12;
+    const nx=th.find(t=>t.count>c);
+    if(nx)sc+=(c/nx.count)*5;
+  });
+  hs.forEach(h=>{if(h.carry)sc+=8;if(h.cost>=4)sc+=3;if(h.cost>=5)sc+=2;});
+  return sc;
+}
+function buildBest(poolIds,cap){
+  const poolArr=poolIds.map(byIdH).filter(Boolean);
+  const lineup=[],rest=[...poolArr];
+  while(lineup.length<cap&&rest.length){
+    let bi=-1,bg=0.001;const base=scoreLineup(lineup);
+    rest.forEach((h,i)=>{const g=scoreLineup(lineup.concat([h]))-base;if(g>bg){bg=g;bi=i;}});
+    if(bi<0)break;lineup.push(rest.splice(bi,1)[0]);
+  }
+  for(let p=0;p<2;p++){
+    let improved=false;
+    lineup.forEach((h,idx)=>{
+      const base=scoreLineup(lineup);
+      poolArr.forEach(c=>{
+        if(lineup.includes(c))return;
+        const trial=lineup.slice();trial[idx]=c;
+        if(scoreLineup(trial)>base+0.01){lineup[idx]=c;improved=true;}
+      });
+    });
+    if(!improved)break;
+  }
+  return lineup;
+}
+function suggestNext(boardIds){
+  const board=boardIds.map(byIdH).filter(Boolean);
+  const base=scoreLineup(board),baseCounts=synCounts(board);
+  return HEROES.filter(h=>!boardIds.includes(h.id)).map(h=>{
+    const nb=board.concat([h]),g=scoreLineup(nb)-base;
+    const reasons=[];
+    activeSyn(synCounts(nb)).forEach(a=>{
+      const bc=baseCounts[a.syn.id]||0;
+      const prevLvl=(a.syn.thresholds||[]).filter(t=>bc>=t.count).length;
+      if(a.level>prevLvl&&a.level>0)reasons.push(`aktifkan ${a.syn.name} (${a.count})`);
+      else if(a.next&&a.count>=a.next.count-1)reasons.push(`dekati ${a.syn.name} ${a.next.count}`);
+    });
+    if(h.carry)reasons.push('carry potensial');
+    if(h.cost===1)reasons.push('murah, gampang bintang 2');
+    return{h,gain:g,reasons:reasons.slice(0,2)};
+  }).filter(x=>x.gain>0.5).sort((a,b)=>b.gain-a.gain).slice(0,3);
+}
+function commanderFor(lineup){
+  const names=new Set(lineup.map(h=>h.name));
+  let best=null,bo=0;
+  COMPS.forEach(c=>{
+    const ov=(c.core_heroes||[]).filter(n=>names.has(n)).length;
+    if(ov>bo){bo=ov;best=c;}
+  });
+  return bo>=2?best:null;
+}
+function itemsFor(lineup,comp){
+  if(comp&&comp.items&&comp.items.length)return{src:`meta "${comp.name}"`,items:comp.items.slice(0,3)};
+  const picks=EQUIPMENT.filter(e=>/damage|attack|crit/i.test(e.effect||'')).slice(0,3).map(e=>e.name);
+  return{src:'generik untuk carry',items:picks};
+}
+document.addEventListener('DOMContentLoaded',loadData);
+</script>
+<script>
+/* ============ UI ============ */
+const $=id=>document.getElementById(id);
+const heroImg=(h,sz=44)=>`<img src="img/heroes/${h.id}.webp" loading="lazy" style="width:${sz}px;height:${sz}px" onerror="this.style.display='none'">`;
+function buildCapChips(){
+  $('capChips').innerHTML=[3,4,5,6,7,8,9].map(c=>`<button class="chip${c===boardCap?' on':''}" onclick="boardCap=${c};buildCapChips()">Lv ${c}</button>`).join('');
+}
+function buildCostChips(){
+  const costs=['all',1,2,3,4,5,7];
+  $('costChips').innerHTML=costs.map(c=>`<button class="chip${String(poolCost)===String(c)?' on':''}" onclick="poolCost='${c}';buildCostChips();renderPool()">${c==='all'?'Semua':c+'💰'}</button>`).join('');
+}
+function renderPool(){
+  const q=$('q').value.toLowerCase(),g=$('poolGrid');g.innerHTML='';
+  HEROES.filter(h=>(poolCost==='all'||String(h.cost)===String(poolCost))&&h.name.toLowerCase().includes(q))
+    .sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name)).forEach(h=>{
+    const d=document.createElement('div');
+    d.className='hero'+(pool.includes(h.id)?' sel':'');
+    d.innerHTML=`<span class="cost">${h.cost}💰</span>${h.carry?'<span class="carry">🔥</span>':''}${heroImg(h)}<span class="nm">${h.name}</span>`;
+    d.onclick=()=>{
+      const i=pool.indexOf(h.id);
+      if(i>=0)pool.splice(i,1);else pool.push(h.id);
+      $('poolCount').textContent=pool.length+' dipilih';renderPool();
+    };
+    g.appendChild(d);
+  });
+}
+function clearPool(){pool=[];$('poolCount').textContent='0 dipilih';$('racikResult').style.display='none';renderPool();}
+function renderBoard(){
+  const q=$('qb').value.toLowerCase(),g=$('boardGrid');g.innerHTML='';
+  HEROES.filter(h=>h.name.toLowerCase().includes(q)).sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name)).forEach(h=>{
+    const d=document.createElement('div');
+    d.className='hero'+(board.includes(h.id)?' sel':'');
+    d.innerHTML=`<span class="cost">${h.cost}💰</span>${heroImg(h)}<span class="nm">${h.name}</span>`;
+    d.onclick=()=>{
+      const i=board.indexOf(h.id);
+      if(i>=0)board.splice(i,1);else if(board.length<9)board.push(h.id);
+      $('boardCount').textContent=board.length+'/9';renderBoard();
+    };
+    g.appendChild(d);
+  });
+}
+function clearBoard(){board=[];$('boardCount').textContent='0/9';$('lengkapiResult').innerHTML='';renderBoard();}
+const synDot=s=>{const t=(s.type||'').toLowerCase();return t.includes('role')?'var(--blu)':t.includes('faction')?'var(--pur)':'var(--dim)';};
+function synRow(a){
+  const s=a.syn;
+  const prog=a.unverified?`<span class="dim">data threshold S7 belum tersedia</span>`
+    :a.active?`<span class="cnt">${a.count} ✓ Lv${a.level}</span>`
+    :`<span class="cnt">${a.count}</span>${a.next?`<span class="next"> → butuh ${a.next.count}</span>`:''}`;
+  const eff=a.effect?`<div class="eff">${a.effect}</div>`:`<div class="eff dim">${(s.description||'').slice(0,120)}</div>`;
+  return`<div class="synrow${a.active?'':' off'}"><span class="dot" style="background:${synDot(s)}"></span>
+    <div><div class="nm">${s.name} <span class="dim">· ${s.type}</span></div>${eff}</div>
+    <div style="margin-left:auto;white-space:nowrap">${prog}</div></div>`;
+}
+function lineupHtml(lineup){
+  return`<div class="lu-grid">${lineup.map(h=>`<div class="lu-hero">${heroImg(h,52)}
+    <span class="nm">${h.name}</span><span class="cs">${h.cost}💰</span>${h.carry?'<span class="cb">🔥CARRY</span>':''}</div>`).join('')}</div>`;
+}
+function doRacik(){
+  const box=$('racikResult');
+  if(!pool.length){box.style.display='block';box.innerHTML='<div class="empty">Pilih dulu hero yang kamu punya ☝️</div>';return;}
+  const lineup=buildBest(pool,Math.min(boardCap,pool.length));
+  const acts=activeSyn(synCounts(lineup));
+  const comp=commanderFor(lineup);
+  const carries=lineup.filter(h=>h.carry);
+  const it=itemsFor(lineup,comp);
+  let h=`<div class="card"><div class="secT" style="margin-top:0">♟️ LINEUP RACIKAN (${lineup.length}/${boardCap})</div>${lineupHtml(lineup)}`;
+  h+=`<div class="secT">⚡ SINERGI AKTIF</div>`;
+  const on=acts.filter(a=>a.active),off=acts.filter(a=>!a.active);
+  h+=on.map(synRow).join('')||'<div class="empty">Belum ada sinergi aktif.</div>';
+  if(off.length)h+=`<div class="secT">🔧 PROGRES SINERGI</div>`+off.slice(0,4).map(synRow).join('');
+  if(carries.length){h+=`<div class="secT">🔥 CARRY & ITEM</div>`;
+    carries.forEach(c=>{h+=`<div class="strat">🔥 <b>${c.name}</b> — item: ${it.items.join(', ')} <span class="dim">(${it.src})</span></div>`;});}
+  if(comp)h+=`<div class="secT">👑 COMMANDER</div><div class="strat">👑 <b>${comp.commander}</b> <span class="dim">— cocok dengan meta "${comp.name}" (${comp.core_heroes.filter(n=>lineup.some(l=>l.name===n)).length} hero inti sama)</span></div>`;
+  const missing=(comp?comp.core_heroes:[]).filter(n=>!lineup.some(l=>l.name===n)).slice(0,3);
+  if(missing.length)h+=`<div class="strat">🎯 <b>Cari di shop:</b> ${missing.join(', ')} <span class="dim">— untuk melengkapi "${comp.name}"</span></div>`;
+  h+=`</div>`;
+  box.style.display='block';box.innerHTML=h;box.scrollTop=0;
+}
+function doLengkapi(){
+  const box=$('lengkapiResult');
+  if(!board.length){box.innerHTML='<div class="empty">Pilih dulu hero di board-mu ☝️</div>';return;}
+  const heroes=board.map(byIdH).filter(Boolean);
+  const acts=activeSyn(synCounts(heroes));
+  const sug=suggestNext(board);
+  let h=`<div class="card"><div class="secT" style="margin-top:0">♟️ BOARD-MU (${heroes.length})</div>${lineupHtml(heroes)}`;
+  h+=`<div class="secT">⚡ STATUS SINERGI</div>`+acts.map(synRow).join('');
+  if(sug.length){h+=`<div class="secT">🎯 BELI BERIKUTNYA</div>`;
+    sug.forEach((s,i)=>{h+=`<div class="synrow"><span class="dot" style="background:${i===0?'var(--acc)':'var(--dim)'}"></span>
+      <div><div class="nm">${s.h.name} <span class="dim">· ${s.h.cost}💰 · ${(s.h.synergies||[]).map(id=>{const x=synById(id);return x?x.name:id;}).join(', ')}</span></div>
+      <div class="eff">💡 ${s.reasons.join(' · ')||'menambah opsi'}</div></div></div>`;});}
+  else h+=`<div class="empty">Board sudah optimal dari hero yang ada. Naikkan level / cari bintang 2.</div>`;
+  h+=`</div>`;
+  box.innerHTML=h;box.scrollTop=0;
+}
+function renderMeta(){
+  const box=$('metaList');
+  box.innerHTML=COMPS.map(c=>`<div class="card">
+    <div class="t" style="font-weight:800">${c.name} ${c.unverified?'<span class="dim">(belum terverifikasi)</span>':''}</div>
+    <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
+    <div>${(c.core_heroes||[]).map(n=>{const h=HEROES.find(x=>x.name===n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>
+    ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}
+    ${c.commander?`<div class="strat">👑 Commander: <b>${c.commander}</b></div>`:''}
+    ${c.early_game?`<div class="dim">📝 ${c.early_game}</div>`:''}
+    ${c.notes?`<div class="dim">⚠️ ${c.notes}</div>`:''}
+  </div>`).join('');
+}
+function buildDataChips(){
+  const tabs=[['synergy','⚡ Sinergi'],['hero','🦸 Hero'],['commander','👑 Commander'],['item','🛠️ Item']];
+  $('dataChips').innerHTML=tabs.map(([id,l])=>`<button class="chip${dataTab===id?' on':''}" onclick="dataTab='${id}';buildDataChips();renderDataList()">${l}</button>`).join('');
+}
+function renderDataList(){
+  const q=$('qd').value.toLowerCase(),L=$('dataList');L.innerHTML='';
+  if(dataTab==='synergy'){
+    SYNERGIES.filter(s=>s.name.toLowerCase().includes(q)).forEach(s=>{
+      const th=(s.thresholds||[]).map(t=>`<span class="thr">${t.count}: ${(t.effect||'').slice(0,80)}</span>`).join('');
+      L.innerHTML+=`<div class="drow"><div class="t">${s.name} <span class="dim">· ${s.type}</span></div>
+        <div class="d">${(s.description||'').slice(0,160)}</div><div style="margin-top:4px">${th||'<span class="dim">threshold belum tersedia (S7)</span>'}</div></div>`;
+    });
+  }else if(dataTab==='hero'){
+    HEROES.filter(h=>h.name.toLowerCase().includes(q)).sort((a,b)=>a.cost-b.cost).forEach(h=>{
+      L.innerHTML+=`<div class="drow"><div class="t">${h.name} <span class="dim">· ${h.cost}💰${h.carry?' · 🔥carry':''}</span></div>
+        <div class="d">Sinergi: ${(h.synergies||[]).map(id=>{const x=synById(id);return x?x.name:id;}).join(', ')}</div>
+        ${h.skill_name?`<div class="d">✨ <b>${h.skill_name}</b>: ${(h.skill_desc||'').slice(0,140)}</div>`:''}</div>`;
+    });
+  }else if(dataTab==='commander'){
+    COMMANDERS.filter(c=>c.name.toLowerCase().includes(q)).forEach(c=>{
+      const sk=(c.skills||[]).filter(s=>s.name&&s.name!=='Unverified').slice(0,3).map(s=>`<div class="d">✨ <b>${s.name}</b>: ${(s.description||'').slice(0,120)}</div>`).join('');
+      L.innerHTML+=`<div class="drow"><div class="t">${c.name}${c.meta?' <span class="dim">· meta</span>':''}</div>${sk||'<div class="d dim">skill belum terverifikasi (S7)</div>'}</div>`;
+    });
+  }else{
+    EQUIPMENT.filter(e=>e.name.toLowerCase().includes(q)).forEach(e=>{
+      L.innerHTML+=`<div class="drow"><div class="t">${e.name} <span class="dim">· ${e.category||''}</span></div><div class="d">${e.effect||''}</div></div>`;
+    });
+  }
+}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));}
+</script>
+</body>
+</html>

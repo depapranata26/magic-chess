@@ -1,0 +1,889 @@
+{
+  "patch": "Season 7.1 (Chrono Echoes)",
+  "updated": "2026-09-29",
+  "count": 44,
+  "commanders": [
+    {
+      "id": "bersi",
+      "name": "Bersi",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "dubi",
+      "name": "Dubi",
+      "category": "Combat",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Dubi's Gift",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Grants Fluffy's Rage. The carrier leaves behind a Fluffy whenever moved. Fluffy explodes, stunning enemies in the same row/column for 0.5s."
+        },
+        {
+          "name": "Awaken! Dubi's Wrath",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Enemies hit by Fluffy's explosion take 10% extra damage for 2s."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Dubi), fetched 2026-09-29."
+    },
+    {
+      "id": "fanny",
+      "name": "Fanny",
+      "category": "Combat",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Blade Dancer",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "The Hero Launcher completes after 13 rounds. The hero placed in it joins the battle."
+        },
+        {
+          "name": "Heart of the Blade",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The Hero Launcher now takes only 9 rounds, and the launched hero gains 40% HP."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Fanny), fetched 2026-09-29."
+    },
+    {
+      "id": "johnson",
+      "name": "Johnson",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "layla",
+      "name": "Layla",
+      "category": "Combat",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Hologram: Malefic Gun",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Creates a hologram that attacks the nearest enemy every 2 seconds, dealing stage-scaled damage."
+        },
+        {
+          "name": "Hologram: Destruction Rush",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The hologram fires a piercing laser, dealing stage-scaled damage."
+        }
+      ],
+      "notes": "Skill data from BlueStacks MCGG tier list guide (Feb 2025); Fandom wiki page inaccessible (403) on 2026-09-29. Consensus A-tier commander across sources."
+    },
+    {
+      "id": "ling",
+      "name": "Ling",
+      "category": "Combat",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Showdown",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "Opens a 25-second Dueling Ring. The farthest enemy is dragged into the ring to duel an allied hero, with both sides restricted to basic attacks."
+        },
+        {
+          "name": "Transcendent Stance",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Winning a duel permanently grants 5% Physical Attack, stacking up to 15 times."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Ling), fetched 2026-09-29. Was S-tier in older tier lists but reportedly nerfed in Season 6; S7.1 standing unconfirmed."
+    },
+    {
+      "id": "lukas",
+      "name": "Lukas",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "miya",
+      "name": "Miya",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Fandom wiki page inaccessible (403) on 2026-09-29.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "pao",
+      "name": "Pao",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "wanwan",
+      "name": "Wanwan",
+      "category": "Combat",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Reinforcement",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "After more than half of allied heroes die, attacks the nearest enemy 12 times, dealing stage-scaled physical damage."
+        },
+        {
+          "name": "Tiger's Pounce",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Increases the number of attacks to 20."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Wanwan), fetched 2026-09-29. Was S-tier in older tier lists but reportedly nerfed; S7.1 standing unconfirmed."
+    },
+    {
+      "id": "yuki",
+      "name": "Yuki",
+      "category": "Combat",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Combat). Skills not verified for S7.1."
+    },
+    {
+      "id": "zilong",
+      "name": "Zilong",
+      "category": "Combat",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Great Dragon Spear",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Starts with a spear. Basic attacks have an 18% chance to attack twice additionally. Can buy one enhancement for the spear."
+        },
+        {
+          "name": "Dragon's Roar",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Can buy two additional enhancements for the spear."
+        }
+      ],
+      "notes": "Skill data from BlueStacks MCGG tier list guide (Feb 2025). An advance-server video describes a Season 7 rework giving Zilong a brand-new trait-selection mechanic, so these skills may be outdated for S7.1. Used in the current S7 Bruiser + Dragon Altar comp."
+    },
+    {
+      "id": "abe",
+      "name": "Abe",
+      "category": "Survival",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Survival). Skills not verified for S7.1."
+    },
+    {
+      "id": "angela",
+      "name": "Angela",
+      "category": "Survival",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Love's Protection",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Raises the selected ally's mana regeneration to 170% and grants a 20% Max HP shield."
+        },
+        {
+          "name": "Ripples of Love",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Protects one extra highest-power hero."
+        }
+      ],
+      "notes": "Skill data from an older guide; Fandom wiki page inaccessible (403) on 2026-09-29. A 2026 advance-server video describes Angela as revamped with a 65% instant mana boost, so these old skills are likely outdated for S7.1."
+    },
+    {
+      "id": "harper",
+      "name": "Harper",
+      "category": "Survival",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Survival). Skills not verified for S7.1."
+    },
+    {
+      "id": "kagura",
+      "name": "Kagura",
+      "category": "Survival",
+      "meta": true,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Shield Umbrella",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "The Yin-Yang Umbrella grants allied heroes a 9% Max HP shield every 10 seconds and restores a fixed amount of mana per second."
+        },
+        {
+          "name": "Yin Yang Gathering",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The shield granted by the umbrella increases to 18% Max HP."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Kagura), fetched 2026-09-29. S-tier in older tier lists."
+    },
+    {
+      "id": "mavis",
+      "name": "Mavis",
+      "category": "Survival",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Gathering Strength",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Since the Showdown Stage, each round win regenerates 8 HP."
+        },
+        {
+          "name": "A Matter of Life or Death",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Regenerates 8 HP whenever a commander is eliminated; increased to 28 HP if the commander was eliminated by you."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Mavis), fetched 2026-09-29. Numbers differ from older guides (which cited 2 HP per win); wiki values used. Was S-tier in older tier lists; S7.1 standing unconfirmed."
+    },
+    {
+      "id": "nana",
+      "name": "Nana",
+      "category": "Survival",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Molina's Blessing",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Avoids the first death: stays at 1 HP and receives an equipment chest."
+        },
+        {
+          "name": "Molina's Gift",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The first damage taken grants 6 gold."
+        }
+      ],
+      "notes": "Skill data from BlueStacks MCGG tier list guide (Feb 2025); Fandom wiki page inaccessible (403) on 2026-09-29. Dependable A-tier commander across sources and used in current S7 comps (Echomancer + Scavenger, 6 Stargazer 3 Necrokeep)."
+    },
+    {
+      "id": "ragnar",
+      "name": "Ragnar",
+      "category": "Survival",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Ragnar restores 7 HP immediately.",
+          "unverified": true
+        },
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Ragnar reduces the damage received in the current round by 50%.",
+          "unverified": true
+        }
+      ],
+      "notes": "Effects from Mobile Legends Fandom wiki (MCGG:Ragnar), fetched 2026-09-29; the wiki page uses template placeholders so the exact skill names are unknown. A new S7 commander Franco is reported to replace Ragnar. Availability in S7.1 unconfirmed."
+    },
+    {
+      "id": "franco",
+      "name": "Franco",
+      "category": "Survival",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Reported as a new S7 commander replacing Ragnar; exact skills not found.",
+          "unverified": true
+        }
+      ],
+      "notes": "New commander in Season 7, reported to replace Ragnar (advance-server coverage, Aug-Sep 2026). Creator videos show fast level-10 play after a buff. Exact skills unverified for S7.1."
+    },
+    {
+      "id": "asta",
+      "name": "Asta",
+      "category": "Resource",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Resource). Skills not verified for S7.1."
+    },
+    {
+      "id": "chou",
+      "name": "Chou",
+      "category": "Resource",
+      "meta": true,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Warrior's Honor",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Gain 1 gold after winning a round."
+        },
+        {
+          "name": "Win or Lose",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "When you lose a round, gain 2 gold, with a 30% chance to receive 1 extra gold."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Chou), fetched 2026-09-29. Used in current S7 Shadeweaver + Starbelle comp and the 6 Dragon Altar 4 Swordsman comp."
+    },
+    {
+      "id": "guinevere",
+      "name": "Guinevere",
+      "category": "Resource",
+      "meta": true,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Super Magic",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "When refreshing the shop, there is a 14% chance to find 1 free hero."
+        },
+        {
+          "name": "Mystic Evolution",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The chance of finding free heroes increases to 26%."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Guinevere), fetched 2026-09-29. Recommended as a current S7 economy commander for the 6 Kishin comp."
+    },
+    {
+      "id": "lancelot",
+      "name": "Lancelot",
+      "category": "Resource",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Golden Legacy",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "No longer earns interest. Starting from Stage I/II/III onward, gain 2/2/3 bonus gold each round. At the end of each round, all gold is consumed to upgrade Lancelot."
+        },
+        {
+          "name": "Golden Blade",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "From Stage I/II/III onward, the bonus gold increases to 2/3/4."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Lancelot), fetched 2026-09-29."
+    },
+    {
+      "id": "popol-and-kupa",
+      "name": "Popol and Kupa",
+      "category": "Resource",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. No accessible Season 7.1 commander skill source found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Resource). Recommended as a current S7 economy commander for the 6 Kishin comp. Exact skills unverified for S7.1."
+    },
+    {
+      "id": "aamon",
+      "name": "Aamon",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Blade of Resonance",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Each 2-star hero grants one Shard. Collecting 7 Shards creates a Mirror Device. Up to 3 Mirror Devices can be held."
+        },
+        {
+          "name": "Skybreaker Blade",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Gain 8 gold whenever a Mirror Device is created."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Aamon), fetched 2026-09-29."
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Frost Treasures",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "The shop freezes each round. Buying no heroes grants 2 Frost Energy; at 6 Frost Energy, gain a random reward worth at least 5 gold, then Frost Energy resets."
+        },
+        {
+          "name": "Icy Blessing",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Keeping the shop frozen in consecutive rounds increases the next Frost Energy gain to 3."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Aurora), fetched 2026-09-29."
+    },
+    {
+      "id": "connie",
+      "name": "Connie",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "I Want All of Them!",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "During Go Go Box rounds 2 and 3, after the selections, choose one extra unselected hero."
+        },
+        {
+          "name": "Unrestricted",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "The extra selection can also include Equipment and Magic Crystals."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Connie), fetched 2026-09-29."
+    },
+    {
+      "id": "eggie",
+      "name": "Eggie",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Fandom wiki page inaccessible (403) on 2026-09-29.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Strategy). Skills not verified for S7.1."
+    },
+    {
+      "id": "eva",
+      "name": "Eva",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Blessing",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "With at least one active synergy count of 6 or higher, all allied heroes gain 10% Hybrid ATK."
+        },
+        {
+          "name": "Supplication",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "If exactly one synergy of 6 or higher is active and no others, all allied heroes gain 8% Attack Speed instead."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Eva), fetched 2026-09-29."
+    },
+    {
+      "id": "harley",
+      "name": "Harley",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Fandom wiki page inaccessible (403) on 2026-09-29.",
+          "unverified": true
+        }
+      ],
+      "notes": "Listed in Fandom wiki MCGG commander nav (Strategy). Skills not verified for S7.1."
+    },
+    {
+      "id": "lunox",
+      "name": "Lunox",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Budding Blossom",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "Usable after Stage III. Select a hero without a Blessing to grant them a random Blessing. Can be used 1 time. (Blessing: the blessed hero contributes +1 to their Role or Faction Synergy.)"
+        },
+        {
+          "name": "Dawn's Gift",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Unlocks after Stage II.",
+          "unverified": true
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Lunox), fetched 2026-09-29. The wiki page does not document Dawn's Gift's effect text, so its description is unverified."
+    },
+    {
+      "id": "lylia",
+      "name": "Lylia",
+      "category": "Strategy",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Little Witch's Shop",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "Revamped skill in Season 7.1: freely choose heroes at Commander Level 8; bonus shop access tied to collection milestones (preview shows 8/8).",
+          "unverified": true
+        },
+        {
+          "name": "Unverified",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Second skill / second-star upgrade details not confirmed for S7.1.",
+          "unverified": true
+        }
+      ],
+      "notes": "S7.1 revamp confirmed by official app changelog ('Revamped Commander Lylia returns with \"Little Witch's Shop\"! Freely choose Heroes at Lv.8.') and GameMarket S7.1 preview (2026-09-09). The Fandom wiki page still shows pre-revamp Tharz-era skills and is stale. Exact mechanics beyond the Level-8 hero choice are unverified."
+    },
+    {
+      "id": "moskov",
+      "name": "Moskov",
+      "category": "Strategy",
+      "meta": true,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Power of Shadow",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Sacrifice the designated 1/2/3/4-cost heroes in the Shadow Field; the next hero gains 18% Hybrid ATK and 18% HP. The sacrificed heroes' sale value is refunded."
+        },
+        {
+          "name": "Dark Star",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Creates two additional 1-star copies of the enhanced hero."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Moskov), fetched 2026-09-29. Consensus A-tier commander across sources."
+    },
+    {
+      "id": "vale",
+      "name": "Vale",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": false,
+      "skills": [
+        {
+          "name": "Updraft",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "Choose a hero, then refresh the shop to show only heroes sharing at least one synergy with it; one purchase is free. Charges available at Stage I-1 and Stage III-1."
+        },
+        {
+          "name": "Shifting Wind",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Grants an additional use of Updraft at Stage III-1."
+        }
+      ],
+      "notes": "Source: Mobile Legends Fandom wiki (MCGG:Vale), fetched 2026-09-29. Received adjustments in Season 6."
+    },
+    {
+      "id": "brody",
+      "name": "Brody",
+      "category": "Strategy",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Abyss Domain",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "New Season 7.1 signature mechanic: the Abyss Domain assesses heroes based on their costs and synergies, supporting synergy-completion play.",
+          "unverified": true
+        },
+        {
+          "name": "Unverified",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Second skill / second-star upgrade details not confirmed for S7.1.",
+          "unverified": true
+        }
+      ],
+      "notes": "New commander added in Season 7.1 (launched 2026-09-09), confirmed by GameMarket S7.1 preview and official app changelog ('The Abyss Domain assesses Heroes based on their costs and Synergies.'). Exact skill names and full mechanics unverified."
+    },
+    {
+      "id": "alice",
+      "name": "Alice",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Added around January 2026 per update coverage; exact skills not found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Commander added by January 2026 per MCGG update coverage. Wiki trivia on Mavis calls Alice her counterpart. Exact skills and category unverified for S7.1."
+    },
+    {
+      "id": "diggie",
+      "name": "Diggie",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Added around Season 5 per advance-server patch coverage.",
+          "unverified": true
+        }
+      ],
+      "notes": "Commander added around Season 5 per advance-server patch-note coverage, which mentions trade-offs for Diggie in Go Go Box rounds. Exact skills and category unverified."
+    },
+    {
+      "id": "vexana",
+      "name": "Vexana",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Added around Season 5; advance-server coverage mentions a huge gold buff.",
+          "unverified": true
+        }
+      ],
+      "notes": "Commander added around Season 5; advance-server patch coverage mentions a huge gold buff for Vexana. Exact skills and category unverified for S7.1."
+    },
+    {
+      "id": "kalea",
+      "name": "Kalea",
+      "category": "Unknown",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Treasure Trove",
+          "unlock_star": 1,
+          "type": "active",
+          "description": "High-risk, high-reward point system: stack points through play, then cash out for gold and hero rewards. A key mistake resets progress to zero.",
+          "unverified": true
+        },
+        {
+          "name": "Unverified",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "Second skill / second-star upgrade details not confirmed for S7.1.",
+          "unverified": true
+        }
+      ],
+      "notes": "Commander added ~Season 6 (July 2026). Ability details from MCGG creator guide videos ('Kalea's Treasure Trove ability, point system, cash out for gold and heroes'). Recommended economy commander in current S7 guides and used in the Dragoncaller + Dragon Altar comp. Exact names/numbers unverified."
+    },
+    {
+      "id": "ruby",
+      "name": "Ruby",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Added around July 2026 per update coverage; exact skills not found.",
+          "unverified": true
+        }
+      ],
+      "notes": "Commander added around July 2026 per MCGG update coverage. Exact skills and category unverified for S7.1."
+    },
+    {
+      "id": "karina",
+      "name": "Karina",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Shadow Twinblades",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Gain Shadow Twinblades at the start of the game. When an enemy hero adjacent to the carrier has HP below 15%, Karina executes the target."
+        },
+        {
+          "name": "Twinblades Evolution",
+          "unlock_star": 2,
+          "type": "passive",
+          "description": "After Karina executes a target, the carrier's DMG is increased by 1%, up to 35%."
+        }
+      ],
+      "notes": "Skill data from Mobile Legends Fandom wiki page 'Karina (Magic Chess: GO GO)', which explicitly describes her as a commander (fetched via search snippet, 2026-09-29). She is absent from the wiki's commander nav list, so S7.1 roster availability is unverified."
+    },
+    {
+      "id": "valir",
+      "name": "Valir",
+      "category": "Unknown",
+      "meta": false,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Named in advance-server commander-adjustment coverage and S7 guide videos.",
+          "unverified": true
+        }
+      ],
+      "notes": "Appears in S7 advance-server commander-adjustment coverage (Power Card reworks) and dedicated 'Master Valir Commander' S7 guide videos. Exact skills, category, and live roster status unverified for S7.1."
+    },
+    {
+      "id": "luo-yi",
+      "name": "Luo Yi",
+      "category": "Unknown",
+      "meta": true,
+      "unverified": true,
+      "skills": [
+        {
+          "name": "Unverified",
+          "unlock_star": 1,
+          "type": "passive",
+          "description": "Exact skill details for Season 7.1 are unverified. Named as the commander for the S7 Starbelle + Scavenger comp in creator videos.",
+          "unverified": true
+        }
+      ],
+      "notes": "Named as the recommended commander for the current S7 'Starbelle + Scavenger' comp in MCGG creator videos. Exact skills, category, and roster status unverified for S7.1."
+    }
+  ]
+}

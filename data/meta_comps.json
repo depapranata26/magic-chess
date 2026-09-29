@@ -1,0 +1,234 @@
+{
+  "patch": "Season 7.1 (Chrono Echoes)",
+  "updated": "2026-09-29",
+  "count": 8,
+  "mechanics": {
+    "blessing": {
+      "description": "A hero with a Blessing contributes +1 to their Role or Faction Synergy.",
+      "source": "Mobile Legends Fandom wiki (MCGG:Lunox), fetched 2026-09-29",
+      "unverified": false
+    },
+    "shop_interest": {
+      "description": "Hold 10-50 gold to earn interest each round. Typical level pacing: level 4 by round 6, level 5 by round 9, level 6 by round 13, level 7 by round 17, levels 8/9 around round 21+. Shop Lock preserves the current shop heroes for the next round.",
+      "source": "Current MCGG guide (ARCTopup), fetched 2026-09-29",
+      "unverified": true
+    },
+    "fate_box": {
+      "description": "An extra board slot can be obtained from the Fate Box (Go Go Box).",
+      "source": "Current MCGG guide, fetched 2026-09-29",
+      "unverified": true
+    },
+    "board_capacity": {
+      "description": "Commander level determines deployable heroes: level 3 -> 3, 4 -> 4, 5 -> 5, 6 -> 6, 7 -> 7, 8 -> 8, 9 -> 9.",
+      "slots_by_commander_level": {
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9
+      },
+      "source": "Provided by requester; standard MCGG capacity rules",
+      "unverified": false
+    },
+    "choice_magic_crystal": {
+      "description": "Season 7 introduced an upgraded Choice Magic Crystal system. Example: assign a Choice Magic Crystal to Kishin to activate the 6-Kishin synergy. Full selection mechanics unconfirmed.",
+      "source": "Official Moonton S7 announcement (en.moonton.com/news/364.html); Kishin comp guide",
+      "unverified": true
+    },
+    "new_s7_synergies": {
+      "description": "Season 7 added Echomancer (summons a random 5-cost hero from a past season), SPECTRE (can unlock Alpha, MCGG's first 7-gold hero), Starbelle (Lightstick turns a hero into a Fan), and Mistbender (gathers tokens during battle to spend in a special shop). Dragon Altar and Shadeweaver returned.",
+      "source": "Official Moonton S7 announcement (en.moonton.com/news/364.html)",
+      "unverified": false
+    }
+  },
+  "comps": [
+    {
+      "id": "kishin-phasewarper-shadeweaver",
+      "name": "6 Kishin 3 Phasewarper 3 Shadeweaver",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Kishin",
+        "Phasewarper",
+        "Shadeweaver",
+        "Echomancer",
+        "Scavenger"
+      ],
+      "core_heroes": [
+        "Angela",
+        "Franco",
+        "Lunox",
+        "Karrie",
+        "Lancelot",
+        "Thamuz",
+        "Harley",
+        "Kadita",
+        "Melissa"
+      ],
+      "carry": "",
+      "items": [],
+      "commander": "Kalea",
+      "early_game": "Economy commander (Kalea, Guinevere, or Popol and Kupa). Early game: run Echomancer, Scavenger, and Phasewarper units while leveling to 9, then transition. Assign a Choice Magic Crystal to Kishin to activate 6 Kishin. Add Hylos for 3 Shadeweaver if a Fate Box slot or level 10 allows; if the Chrono Wanderer is Gatotkaca, replace Angela with Dyrroth.",
+      "unverified": true,
+      "notes": "From a current S7 Kishin comp guide. Carry hero and item sets not specified in the source, so they are left empty rather than invented.",
+      "key_synergies": {
+        "kishin": 6,
+        "phasewarper": 3,
+        "shadeweaver": 3
+      }
+    },
+    {
+      "id": "stargazer-necrokeep",
+      "name": "6 Stargazer 3 Necrokeep",
+      "patch": "S6/S7",
+      "synergies": [
+        "Stargazer",
+        "Necrokeep"
+      ],
+      "core_heroes": [
+        "Minotaur",
+        "Leomord",
+        "Mathilda",
+        "Lunox",
+        "Chang'e",
+        "Natan",
+        "Aurora",
+        "Yve",
+        "Vexana",
+        "Faramis"
+      ],
+      "carry": "Vexana",
+      "items": [
+        "Glowing Wand",
+        "Enchanted Talisman",
+        "Ice Queen Wand"
+      ],
+      "commander": "Nana",
+      "early_game": "Prioritize the Stargazer Magic Crystal and EXP cards to hit power spikes early.",
+      "unverified": true,
+      "notes": "From MTE's MCGG synergy/lineup guide. Predates Season 7.1; viability in the current patch is unconfirmed. Tank: Leomord with Demon Hunter Sword, Haas' Claws, Golden Staff. | Hero berikut TIDAK ADA di hero pool S7.1 (kemungkinan dari guide Magic Chess klasik): Leomord, Chang'e, Natan, Aurora, Yve, Faramis",
+      "key_synergies": {
+        "stargazer": 6,
+        "necrokeep": 3
+      }
+    },
+    {
+      "id": "dragon-altar-swordsman",
+      "name": "6 Dragon Altar 4 Swordsman",
+      "patch": "S6/S7",
+      "synergies": [
+        "Dragon Altar",
+        "Swordsman"
+      ],
+      "core_heroes": [
+        "Ling",
+        "Sun Wukong",
+        "Lancelot",
+        "Nolan",
+        "Karina",
+        "Wanwan",
+        "Yin",
+        "Chang'e",
+        "Akai"
+      ],
+      "carry": "Ling",
+      "items": [
+        "Blade of Despair",
+        "War Axe",
+        "Winter Crown"
+      ],
+      "commander": "Chou",
+      "early_game": "Take Inspire early for attack speed while building the Dragon Altar core.",
+      "unverified": true,
+      "notes": "From MTE's MCGG synergy/lineup guide. Predates Season 7.1; viability in the current patch is unconfirmed. Tank: Sun Wukong with Dominance Ice, Immortality, Oracle. | Hero berikut TIDAK ADA di hero pool S7.1 (kemungkinan dari guide Magic Chess klasik): Ling, Sun Wukong, Nolan, Chang'e, Akai",
+      "key_synergies": {
+        "dragon_altar": 6,
+        "swordsman": 4
+      }
+    },
+    {
+      "id": "echomancer-scavenger",
+      "name": "Echomancer + Scavenger",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Echomancer",
+        "Scavenger"
+      ],
+      "core_heroes": [],
+      "carry": "",
+      "items": [],
+      "commander": "Nana",
+      "early_game": "Strong Scavenger early game for economy and tempo; scales into a strong late game once a 3-star hero is online.",
+      "unverified": true,
+      "notes": "From current S7 creator videos (top-global style Echomancer + Scavenger games). Exact hero board and item sets not specified in the source."
+    },
+    {
+      "id": "bruiser-dragon-altar",
+      "name": "Bruiser + Dragon Altar",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Bruiser",
+        "Dragon Altar",
+        "Echomancer"
+      ],
+      "core_heroes": [],
+      "carry": "",
+      "items": [],
+      "commander": "Zilong",
+      "early_game": "Open with Echomancer units early, then pivot into the Bruiser + Dragon Altar core.",
+      "unverified": true,
+      "notes": "From current S7 creator videos. Exact hero board and item sets not specified."
+    },
+    {
+      "id": "dragoncaller-dragon-altar",
+      "name": "Dragoncaller + Dragon Altar",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Dragoncaller",
+        "Dragon Altar",
+        "Scavenger"
+      ],
+      "core_heroes": [],
+      "carry": "",
+      "items": [],
+      "commander": "Kalea",
+      "early_game": "Use Scavenger for a strong early game, then scale into the Dragoncaller + Dragon Altar late-game combo once a 3-star hero is online.",
+      "unverified": true,
+      "notes": "From current S7 creator videos (Kalea commander). Exact hero board and item sets not specified."
+    },
+    {
+      "id": "shadeweaver-starbelle",
+      "name": "Shadeweaver + Starbelle",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Shadeweaver",
+        "Starbelle",
+        "Scavenger"
+      ],
+      "core_heroes": [],
+      "carry": "",
+      "items": [],
+      "commander": "Chou",
+      "early_game": "Use Scavenger early for economy while assembling the Shadeweaver + Starbelle core.",
+      "unverified": true,
+      "notes": "From current S7 creator videos (Chou commander). Exact hero board and item sets not specified."
+    },
+    {
+      "id": "starbelle-scavenger",
+      "name": "Starbelle + Scavenger",
+      "patch": "Season 7.1 (Chrono Echoes)",
+      "synergies": [
+        "Starbelle",
+        "Scavenger"
+      ],
+      "core_heroes": [],
+      "carry": "",
+      "items": [],
+      "commander": "Luo Yi",
+      "early_game": "Scavenger start for economy; transition into the Starbelle core.",
+      "unverified": true,
+      "notes": "From current S7 creator videos (Luo Yi commander). Exact hero board and item sets not specified."
+    }
+  ]
+}

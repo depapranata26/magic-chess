@@ -1,0 +1,382 @@
+{
+  "patch": "Season 7.1 (Chrono Echoes)",
+  "updated": "2026-09-29",
+  "count": 51,
+  "equipment": [
+    {
+      "id": "demon-hunter",
+      "name": "Demon Hunter",
+      "category": "Physical",
+      "effect": "Tank killer: deals bonus damage based on the target's max HP.",
+      "unverified": false,
+      "notes": "MTE comp guides call it 'Demon Hunter Sword'; the equipment guide names it 'Demon Hunter'. Naming discrepancy flagged."
+    },
+    {
+      "id": "rose-gold-meteor",
+      "name": "Rose Gold Meteor",
+      "category": "Physical",
+      "effect": "Grants bonus attack and a shield when the carrier drops to low HP.",
+      "unverified": false
+    },
+    {
+      "id": "blade-of-despair",
+      "name": "Blade of Despair",
+      "category": "Physical",
+      "effect": "Executes low-HP enemies: deals massive bonus damage to / finishes off weakened targets.",
+      "unverified": false
+    },
+    {
+      "id": "golden-staff",
+      "name": "Golden Staff",
+      "category": "Physical",
+      "effect": "Continuously increases the carrier's attack speed (stacking attack-speed effect).",
+      "unverified": false
+    },
+    {
+      "id": "sea-halberd",
+      "name": "Sea Halberd",
+      "category": "Physical",
+      "effect": "Counters lifesteal (applies healing reduction) and provides high penetration.",
+      "unverified": false
+    },
+    {
+      "id": "haas-claws",
+      "name": "Haas' Claws",
+      "category": "Physical",
+      "effect": "Grants additional lifesteal on attacks.",
+      "unverified": false
+    },
+    {
+      "id": "war-axe",
+      "name": "War Axe",
+      "category": "Physical",
+      "effect": "Grants spell vamp (heals from skill damage dealt).",
+      "unverified": false
+    },
+    {
+      "id": "berserkers-fury",
+      "name": "Berserker's Fury",
+      "category": "Physical",
+      "effect": "Increases the carrier's critical hit capability.",
+      "unverified": false
+    },
+    {
+      "id": "enchanted-talisman",
+      "name": "Enchanted Talisman",
+      "category": "Magic",
+      "effect": "Restores mana at the start of battle.",
+      "unverified": false
+    },
+    {
+      "id": "glowing-wand",
+      "name": "Glowing Wand",
+      "category": "Magic",
+      "effect": "Deals sustained magic damage over time and reduces enemy healing.",
+      "unverified": false
+    },
+    {
+      "id": "feline-blade",
+      "name": "Feline Blade",
+      "category": "Magic",
+      "effect": "Transforms an enemy at the start of battle or when damage conditions are met.",
+      "unverified": false
+    },
+    {
+      "id": "winter-crown",
+      "name": "Winter Crown",
+      "category": "Magic",
+      "effect": "Makes the carrier invincible at low HP (brief stasis/freeze).",
+      "unverified": false
+    },
+    {
+      "id": "ice-queen-wand",
+      "name": "Ice Queen Wand",
+      "category": "Magic",
+      "effect": "Grants spell vamp (heals from magic skill damage dealt).",
+      "unverified": false
+    },
+    {
+      "id": "feather-of-heaven",
+      "name": "Feather of Heaven",
+      "category": "Magic",
+      "effect": "Grants additional lifesteal.",
+      "unverified": false
+    },
+    {
+      "id": "blood-wings",
+      "name": "Blood Wings",
+      "category": "Magic",
+      "effect": "Periodically grants the carrier a shield.",
+      "unverified": false
+    },
+    {
+      "id": "blade-armor",
+      "name": "Blade Armor",
+      "category": "Defense",
+      "effect": "Reflects physical damage back at attackers.",
+      "unverified": false
+    },
+    {
+      "id": "immortality",
+      "name": "Immortality",
+      "category": "Defense",
+      "effect": "Resurrects the carrier on death with a portion of HP.",
+      "unverified": false
+    },
+    {
+      "id": "dominance-ice",
+      "name": "Dominance Ice",
+      "category": "Defense",
+      "effect": "Grants more mana regeneration when the carrier takes damage.",
+      "unverified": false
+    },
+    {
+      "id": "guardian-helmet",
+      "name": "Guardian Helmet",
+      "category": "Defense",
+      "effect": "Provides high base HP.",
+      "unverified": false
+    },
+    {
+      "id": "brute-force-breastplate",
+      "name": "Brute Force Breastplate",
+      "category": "Defense",
+      "effect": "Grants attack speed and crowd-control reduction.",
+      "unverified": false
+    },
+    {
+      "id": "antique-cuirass",
+      "name": "Antique Cuirass",
+      "category": "Defense",
+      "effect": "Reduces the target's hybrid attack.",
+      "unverified": false
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "category": "Defense",
+      "effect": "Increases allied heroes' hybrid defense.",
+      "unverified": false
+    },
+    {
+      "id": "mirror-device",
+      "name": "Mirror Device",
+      "category": "Special",
+      "effect": "Clones the equipped hero (also created by Aamon's Blade of Resonance).",
+      "unverified": false
+    },
+    {
+      "id": "claudes-theft",
+      "name": "Claude's Theft",
+      "category": "Special",
+      "effect": "Grants two random equipment at the beginning of the game.",
+      "unverified": false
+    },
+    {
+      "id": "inspire",
+      "name": "Inspire",
+      "category": "Special",
+      "effect": "Increases attack speed.",
+      "unverified": false
+    },
+    {
+      "id": "knowledge-crystal",
+      "name": "Knowledge Crystal",
+      "category": "Special",
+      "effect": "Upgrades the Erudition synergy.",
+      "unverified": false
+    },
+    {
+      "id": "great-dragon-spear",
+      "name": "Great Dragon Spear",
+      "category": "Special",
+      "effect": "Enhanceable Heavenly Artifact; used by Commander Zilong.",
+      "unverified": false,
+      "notes": "Same name as Zilong's commander skill artifact."
+    },
+    {
+      "id": "revitalize",
+      "name": "Revitalize",
+      "category": "Special",
+      "effect": "Restores HP when the carrier drops to low HP.",
+      "unverified": false
+    },
+    {
+      "id": "purify",
+      "name": "Purify",
+      "category": "Special",
+      "effect": "Grants control immunity at the start of battle.",
+      "unverified": false
+    },
+    {
+      "id": "flicker",
+      "name": "Flicker",
+      "category": "Special",
+      "effect": "Blinks at the start of battle and grants attack speed.",
+      "unverified": false
+    },
+    {
+      "id": "sunset-shield",
+      "name": "Sunset Shield",
+      "category": "Special",
+      "effect": "Deals area-of-effect damage.",
+      "unverified": false
+    },
+    {
+      "id": "aegis",
+      "name": "Aegis",
+      "category": "Special",
+      "effect": "Shields allied heroes.",
+      "unverified": false
+    },
+    {
+      "id": "retribution",
+      "name": "Retribution",
+      "category": "Special",
+      "effect": "Kills level up the carrier and increase its damage.",
+      "unverified": false
+    },
+    {
+      "id": "hunting-revolver",
+      "name": "Hunting Revolver",
+      "category": "Special",
+      "effect": "Attacks can trigger an explosion.",
+      "unverified": false
+    },
+    {
+      "id": "sun-staff",
+      "name": "Sun Staff",
+      "category": "Special",
+      "effect": "Skills trigger an extra magic explosion.",
+      "unverified": false
+    },
+    {
+      "id": "mc-dauntless",
+      "name": "Dauntless",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "From an older guide's Magic Crystal list (pre-S7). Season 7 uses the upgraded Choice Magic Crystal system per official Moonton announcement; this legacy list may not reflect the S7.1 crystal pool."
+    },
+    {
+      "id": "mc-defender",
+      "name": "Defender",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-weapon-master",
+      "name": "Weapon Master",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-marksman",
+      "name": "Marksman",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-mage",
+      "name": "Mage",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-stargazer",
+      "name": "Stargazer",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-swordsman",
+      "name": "Swordsman",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-moniyan",
+      "name": "Moniyan",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-northern-vale",
+      "name": "Northern Vale",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-go-go",
+      "name": "Go Go",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-dragon-altar",
+      "name": "Dragon Altar",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-nature-spirit",
+      "name": "Nature Spirit",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-astro-power",
+      "name": "Astro Power",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-erudito",
+      "name": "Erudito",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-abyss",
+      "name": "Abyss",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    },
+    {
+      "id": "mc-los-pecados",
+      "name": "Los Pecados",
+      "category": "Magic Crystal",
+      "effect": "Legacy Magic Crystal entry.",
+      "unverified": true,
+      "notes": "Legacy pre-S7 Magic Crystal; S7.1 pool unconfirmed."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-const CACHE='mc-coach-v1';
+const CACHE='mc-coach-v4';
 const CORE=['./','./index.html','./manifest.json','./data/heroes.json','./data/synergies.json','./data/commanders.json','./data/equipment.json','./data/meta_comps.json','./data/economy.json','./data/community_guides.json'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));

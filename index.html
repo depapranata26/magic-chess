@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#0d1220">
-<title>MC Lineup Coach — Peracik Lineup Magic Chess</title>
+<title>MC Lineup Coach — Penentu Arah & Juri Shop</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <style>
-:root{--bg:#0d1220;--card:#141c30;--line:#24304a;--txt:#e8edf7;--dim:#8b96b0;--acc:#ffd34d;--grn:#3ecf8e;--red:#ff5d6c;--blu:#4da3ff;--pur:#b478ff;}
+:root{--bg:#0d1220;--card:#141c30;--line:#24304a;--txt:#e8edf7;--dim:#8b96b0;--acc:#ffd34d;--grn:#3ecf8e;--red:#ff5d6c;--blu:#4da3ff;--pur:#b478ff;--ylw:#ffd34d;}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;margin:0;}
-body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;
-display:flex;flex-direction:column;height:100dvh;overflow:hidden;}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;display:flex;flex-direction:column;height:100dvh;overflow:hidden;}
 header{flex:0 0 auto;padding:10px 12px 6px;border-bottom:1px solid var(--line);}
 header .ttl{font-weight:800;font-size:15px;letter-spacing:.5px;}
 header .ttl b{color:var(--acc);}
@@ -29,9 +28,11 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;border:1px solid var(--line);background:#101827;color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
 .chip.on{background:var(--acc);border-color:var(--acc);color:#1a1206;}
 .grid{flex:1 1 auto;overflow-y:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-content:start;padding-bottom:8px;min-height:0;}
+.grid.sm{flex:0 1 auto;max-height:30%;}
 .hero{cursor:pointer;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;}
 .hero:active{transform:scale(.96);}
 .hero.sel{border-color:var(--grn);background:#12291f;}
+.hero.inshop{border-color:var(--acc);background:#2a2111;}
 .hero .nm{font-size:10.5px;text-align:center;line-height:1.2;}
 .hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;}
 .cost{position:absolute;top:4px;left:6px;font-size:10px;font-weight:800;background:#000a;padding:2px 6px;border-radius:8px;color:var(--acc);}
@@ -40,64 +41,87 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .btn{flex:1;background:var(--acc);border:none;border-radius:12px;color:#1a1206;font-weight:800;font-size:14px;padding:13px;cursor:pointer;}
 .btn:active{transform:scale(.98);}
 .btn.ghost{background:#1a2436;color:var(--txt);border:1px solid var(--line);flex:0 0 auto;padding:13px 16px;}
+.btn.small{padding:8px 12px;font-size:12px;flex:0 0 auto;}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;}
 .secT{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--acc);margin:10px 0 6px;}
 .synrow{display:flex;gap:8px;align-items:center;padding:7px 8px;background:#0f1626;border-radius:10px;margin-bottom:6px;}
 .synrow .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
 .synrow .nm{font-weight:700;font-size:13px;}
-.synrow .cnt{margin-left:auto;font-size:12px;font-weight:800;color:var(--acc);white-space:nowrap;}
-.synrow .eff{font-size:11px;color:var(--dim);margin-top:2px;}
-.synrow.off{opacity:.45;}
-.synrow .next{font-size:11px;color:var(--blu);}
-.lu-grid{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0;}
-.lu-hero{display:flex;flex-direction:column;align-items:center;gap:4px;width:62px;}
-.lu-hero img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#0f1626;border:2px solid var(--line);}
-.lu-hero .nm{font-size:10px;text-align:center;line-height:1.15;}
-.lu-hero .cs{font-size:10px;color:var(--acc);font-weight:800;}
-.lu-hero .cb{font-size:9px;color:var(--red);font-weight:800;}
+.synrow .eff{font-size:11px;color:var(--dim);margin-top:2px;line-height:1.4;}
 .strat{background:#0f1626;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;padding:8px 10px;font-size:12.5px;margin-bottom:6px;line-height:1.45;}
 .dim{color:var(--dim);font-size:11px;}
 .scroll{flex:1 1 auto;min-height:0;overflow-y:auto;}
-.comp-hero{display:inline-block;margin:2px;text-align:center;width:56px;vertical-align:top;}
-.comp-hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;}
+.comp-hero{display:inline-block;margin:2px;text-align:center;width:56px;vertical-align:top;position:relative;}
+.comp-hero img{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#0f1626;opacity:.45;}
+.comp-hero.owned img{opacity:1;border:2px solid var(--grn);}
 .comp-hero .nm{font-size:9px;line-height:1.15;}
+.comp-hero .chk{position:absolute;top:-2px;right:2px;font-size:12px;}
 .dlist{flex:1 1 auto;overflow-y:auto;display:flex;flex-direction:column;gap:6px;min-height:0;}
 .drow{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:12.5px;}
 .drow .t{font-weight:700;}
 .drow .d{color:var(--dim);font-size:11.5px;margin-top:3px;line-height:1.4;}
 .thr{display:inline-block;background:#0f1626;border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:10.5px;margin:2px 4px 2px 0;}
 .empty{color:var(--dim);text-align:center;padding:18px 10px;font-size:12.5px;}
+.v-BELI{color:#06281a;background:var(--grn);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
+.v-PERTIMBANGKAN{color:#2a1f06;background:var(--ylw);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
+.v-SKIP{color:var(--dim);background:#1a2436;border:1px solid var(--line);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
+.banner{background:linear-gradient(135deg,#1c2a15,#141c30);border:1px solid var(--grn);border-radius:14px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
 </style>
 </head>
 <body>
-<header><div class="ttl">♟️ <b>MC</b> Lineup Coach</div><div class="sub" id="dataInfo">Magic Chess · Season 7.1 Chrono Echoes</div></header>
+<header><div class="ttl">♟️ <b>MC</b> Lineup Coach</div><div class="sub" id="dataInfo">Magic Chess · Season 7.1</div></header>
 <nav>
-<button class="on" onclick="goTab('tabRacik',this)">🎴 Racik</button>
-<button onclick="goTab('tabLengkapi',this)">➕ Lengkapi</button>
+<button class="on" onclick="goTab('tabArah',this)">🧭 Arah</button>
+<button onclick="goTab('tabJuri',this)">⚡ Juri Shop</button>
+<button onclick="goTab('tabEcon',this)">💰 Ekonomi</button>
 <button onclick="goTab('tabMeta',this)">📊 Meta</button>
 <button onclick="goTab('tabData',this)">📚 Data</button>
 </nav>
 <main>
-<div class="tab on" id="tabRacik">
-  <div class="dim" style="margin-bottom:6px">Pilih hero yang kamu punya, lalu racik lineup terkuat.</div>
-  <div class="chips" id="capChips"></div>
-  <div class="search"><input id="q" placeholder="Cari hero…" oninput="renderPool()"></div>
-  <div class="chips" id="costChips"></div>
-  <div class="grid" id="poolGrid"></div>
-  <div class="selbar"><span class="dim" id="poolCount">0 dipilih</span>
-    <button class="btn ghost" onclick="clearPool()">Reset</button>
-    <button class="btn" onclick="doRacik()">⚡ Racik Lineup</button></div>
-  <div class="scroll" id="racikResult" style="display:none;margin-top:8px"></div>
+<div class="tab on" id="tabArah">
+  <div class="dim" style="margin-bottom:6px">Pilih hero yang dikasih shop di <b>awal game</b> (3–6 hero) — app yang mutusin kamu main comp apa.</div>
+  <div class="search"><input id="qa" placeholder="Cari hero…" oninput="renderEarly()"></div>
+  <div class="grid" id="earlyGrid"></div>
+  <div class="selbar"><span class="dim" id="earlyCount">0 dipilih</span>
+    <button class="btn ghost" onclick="clearEarly()">Reset</button>
+    <button class="btn" onclick="doArah()">🧭 Tentukan Arah</button></div>
+  <div class="scroll" id="arahResult" style="display:none;margin-top:8px"></div>
 </div>
-<div class="tab" id="tabLengkapi">
-  <div class="dim" style="margin-bottom:6px">Pilih hero yang sudah ada di board-mu.</div>
-  <div class="search"><input id="qb" placeholder="Cari hero…" oninput="renderBoard()"></div>
-  <div class="grid" id="boardGrid" style="max-height:38%"></div>
-  <div class="selbar"><span class="dim" id="boardCount">0/9</span>
-    <button class="btn ghost" onclick="clearBoard()">Reset</button>
-    <button class="btn" onclick="doLengkapi()">🔍 Saran Berikutnya</button></div>
-  <div class="scroll" id="lengkapiResult" style="margin-top:8px"></div>
+<div class="tab" id="tabJuri">
+  <div class="banner" id="targetBanner"><span class="dim">🎯 Belum ada comp target — tentukan di tab 🧭 Arah dulu.</span></div>
+  <div id="compProgress"></div>
+  <div class="secT" style="margin-top:4px">♟️ BOARD-MU <span class="dim" id="boardCount">(0/9)</span></div>
+  <div class="search"><input id="qb" placeholder="Cari hero board…" oninput="renderBoardP()"></div>
+  <div class="grid sm" id="boardGrid"></div>
+  <div class="secT">🛒 SHOP RONDE INI <span class="dim" id="shopCount">(0/5)</span></div>
+  <div class="search"><input id="qs" placeholder="Cari hero shop…" oninput="renderShopP()"></div>
+  <div class="grid sm" id="shopGrid"></div>
+  <div class="selbar">
+    <button class="btn ghost" onclick="clearShop()">Reset shop</button>
+    <button class="btn" onclick="doJudge()">⚡ Nilai Shop</button></div>
+  <div class="scroll" id="judgeResult" style="margin-top:8px"></div>
 </div>
+<div class="tab" id="tabEcon"><div class="scroll" style="padding-bottom:8px">
+  <div class="card">
+    <div class="secT" style="margin-top:0">🧮 KALKULATOR RONDE</div>
+    <div class="dim">Gold sekarang</div>
+    <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
+      <button class="btn ghost small" onclick="econGold(-5)">−5</button>
+      <button class="btn ghost small" onclick="econGold(-1)">−1</button>
+      <div id="econGoldVal" style="font-size:22px;font-weight:800;min-width:52px;text-align:center">30</div>
+      <button class="btn ghost small" onclick="econGold(1)">+1</button>
+      <button class="btn ghost small" onclick="econGold(5)">+5</button>
+    </div>
+    <div class="dim">Streak</div>
+    <div class="chips" id="econStreakChips"></div>
+    <div class="dim">Level commander</div>
+    <div class="chips" id="econLevelChips"></div>
+    <button class="btn" style="margin-top:8px" onclick="doEcon()">💰 Kasih Keputusan</button>
+  </div>
+  <div id="econResult"></div>
+  <div class="secT">📖 PLAYBOOK EKONOMI <span class="dim">· Season 7.1</span></div>
+  <div id="econPlaybook"></div>
+</div></div>
 <div class="tab" id="tabMeta"><div class="scroll" id="metaList"></div></div>
 <div class="tab" id="tabData">
   <div class="chips" id="dataChips"></div>
@@ -106,29 +130,32 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 </div>
 </main>
 <script>
-let HEROES=[],SYNERGIES=[],COMMANDERS=[],EQUIPMENT=[],COMPS=[];
-let pool=[],poolCost='all',board=[],boardCap=8,dataTab='synergy';
-const COST_COLOR={1:'#9fb3c8',2:'#3ecf8e',3:'#4da3ff',4:'#b478ff',5:'#ffd34d',7:'#ff5d6c'};
+let HEROES=[],SYNERGIES=[],COMMANDERS=[],EQUIPMENT=[],COMPS=[],ECON=null;
+let earlyIds=[],boardIds=[],shopIds=[],targetComp=null,dataTab='synergy';
+const $=id=>document.getElementById(id);
 function goTab(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
+  $(id).classList.add('on');
   document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 }
 async function loadData(){
-  const [h,s,c,e,m]=await Promise.all([
+  const [h,s,c,e,m,ec]=await Promise.all([
     fetch('data/heroes.json').then(r=>r.json()),
     fetch('data/synergies.json').then(r=>r.json()),
     fetch('data/commanders.json').then(r=>r.json()),
     fetch('data/equipment.json').then(r=>r.json()),
-    fetch('data/meta_comps.json').then(r=>r.json())
+    fetch('data/meta_comps.json').then(r=>r.json()),
+    fetch('data/economy.json').then(r=>r.json())
   ]);
-  HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;
-  document.getElementById('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
-  buildCapChips();buildCostChips();renderPool();renderBoard();renderMeta();buildDataChips();renderDataList();
+  HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;ECON=ec;
+  $('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
+  renderEarly();renderBoardP();renderShopP();renderMeta();buildDataChips();renderDataList();renderTarget();
+  buildEconChips();renderEconPlaybook();
 }
 /* ============ ENGINE ============ */
 const byIdH=id=>HEROES.find(h=>h.id===id);
+const byNameH=n=>HEROES.find(h=>h.name===n);
 const synById=id=>SYNERGIES.find(s=>s.id===id);
 function synCounts(list){const c={};list.forEach(h=>(h.synergies||[]).forEach(s=>c[s]=(c[s]||0)+1));return c;}
 function activeSyn(counts){
@@ -138,183 +165,187 @@ function activeSyn(counts){
     let lvl=0,eff=null;
     th.forEach(t=>{if(c>=t.count){lvl++;eff=t;}});
     const next=th.find(t=>t.count>c)||null;
-    return{syn:s,count:c,level:lvl,active:eff,effect:eff?eff.effect:null,next,unverified:!th.length};
+    return{syn:s,count:c,level:lvl,effect:eff?eff.effect:null,next,unverified:!th.length};
   }).filter(Boolean).sort((a,b)=>(b.level-a.level)||(b.count-a.count));
 }
-function scoreLineup(hs){
-  const counts=synCounts(hs);let sc=0;
-  Object.entries(counts).forEach(([sid,c])=>{
-    const s=synById(sid);if(!s)return;
-    const th=(s.thresholds||[]).slice().sort((a,b)=>a.count-b.count);
-    if(!th.length){sc+=c*0.5;return;}
-    let lvl=0;th.forEach(t=>{if(c>=t.count)lvl++;});
-    if(lvl>0)sc+=lvl*lvl*12;
-    const nx=th.find(t=>t.count>c);
-    if(nx)sc+=(c/nx.count)*5;
-  });
-  hs.forEach(h=>{if(h.carry)sc+=8;if(h.cost>=4)sc+=3;if(h.cost>=5)sc+=2;});
-  return sc;
-}
-function buildBest(poolIds,cap){
-  const poolArr=poolIds.map(byIdH).filter(Boolean);
-  const lineup=[],rest=[...poolArr];
-  while(lineup.length<cap&&rest.length){
-    let bi=-1,bg=0.001;const base=scoreLineup(lineup);
-    rest.forEach((h,i)=>{const g=scoreLineup(lineup.concat([h]))-base;if(g>bg){bg=g;bi=i;}});
-    if(bi<0)break;lineup.push(rest.splice(bi,1)[0]);
+/* --- Penentu arah: hero awal -> rekomendasi comp --- */
+const _ckCache={};
+function compKeys(c){
+  if(_ckCache[c.id])return _ckCache[c.id];
+  let keys=c.key_synergies?Object.keys(c.key_synergies):[];
+  if(!keys.length){
+    const nm=(c.name||'').toLowerCase().replace(/_/g,' ');
+    keys=SYNERGIES.filter(s=>{
+      const id=s.id.toLowerCase().replace(/_/g,' ');
+      return nm.includes(id)||nm.includes(s.name.toLowerCase());
+    }).map(s=>s.id);
   }
-  for(let p=0;p<2;p++){
-    let improved=false;
-    lineup.forEach((h,idx)=>{
-      const base=scoreLineup(lineup);
-      poolArr.forEach(c=>{
-        if(lineup.includes(c))return;
-        const trial=lineup.slice();trial[idx]=c;
-        if(scoreLineup(trial)>base+0.01){lineup[idx]=c;improved=true;}
-      });
-    });
-    if(!improved)break;
-  }
-  return lineup;
+  _ckCache[c.id]=keys;return keys;
 }
-function suggestNext(boardIds){
+function recommendDirection(){
+  const early=earlyIds.map(byIdH).filter(Boolean);
+  const names=new Set(early.map(h=>h.name));
+  const esyns=new Set();early.forEach(h=>(h.synergies||[]).forEach(s=>esyns.add(s)));
+  return COMPS.map(c=>{
+    const core=c.core_heroes||[];
+    const hit=core.filter(n=>names.has(n)).length;
+    const synHit=compKeys(c).filter(k=>esyns.has(k)).length;
+    const score=hit*10+synHit*4;
+    return{c,hit,synHit,score};
+  }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score).slice(0,3);
+}
+/* --- Juri shop: nilai tiap hero di shop --- */
+function judgeShop(){
   const board=boardIds.map(byIdH).filter(Boolean);
-  const base=scoreLineup(board),baseCounts=synCounts(board);
-  return HEROES.filter(h=>!boardIds.includes(h.id)).map(h=>{
-    const nb=board.concat([h]),g=scoreLineup(nb)-base;
-    const reasons=[];
-    activeSyn(synCounts(nb)).forEach(a=>{
-      const bc=baseCounts[a.syn.id]||0;
-      const prevLvl=(a.syn.thresholds||[]).filter(t=>bc>=t.count).length;
-      if(a.level>prevLvl&&a.level>0)reasons.push(`aktifkan ${a.syn.name} (${a.count})`);
-      else if(a.next&&a.count>=a.next.count-1)reasons.push(`dekati ${a.syn.name} ${a.next.count}`);
-    });
-    if(h.carry)reasons.push('carry potensial');
-    if(h.cost===1)reasons.push('murah, gampang bintang 2');
-    return{h,gain:g,reasons:reasons.slice(0,2)};
-  }).filter(x=>x.gain>0.5).sort((a,b)=>b.gain-a.gain).slice(0,3);
-}
-function commanderFor(lineup){
-  const names=new Set(lineup.map(h=>h.name));
-  let best=null,bo=0;
-  COMPS.forEach(c=>{
-    const ov=(c.core_heroes||[]).filter(n=>names.has(n)).length;
-    if(ov>bo){bo=ov;best=c;}
+  const counts=synCounts(board);
+  const ownedNames=new Set(board.map(h=>h.name));
+  return shopIds.map(byIdH).filter(Boolean).map(h=>{
+    let verdict='SKIP',reasons=[];
+    if(ownedNames.has(h.name)){reasons.push('sudah ada di board');}
+    else if(targetComp&&(targetComp.core_heroes||[]).includes(h.name)){
+      verdict='BELI';reasons.push(`inti comp "${targetComp.name}"`);
+      if(h.carry)reasons.push('🔥 carry');
+    }else{
+      const nb=board.concat([h]);
+      const hSyns=new Set(h.synergies||[]);
+      const gains=[];
+      activeSyn(synCounts(nb)).forEach(a=>{
+        if(!hSyns.has(a.syn.id))return;
+        const bc=counts[a.syn.id]||0;
+        const prev=(a.syn.thresholds||[]).filter(t=>bc>=t.count).length;
+        if(a.level>prev&&a.level>0)gains.push('aktifkan '+a.syn.name+` (${a.count})`);
+      });
+      if(gains.length){verdict='BELI';reasons=gains.slice(0,2);}
+      else{
+        const near=activeSyn(synCounts(nb)).some(a=>{
+          if(!hSyns.has(a.syn.id))return false;
+          const bc=counts[a.syn.id]||0;
+          return bc>=1&&a.next&&a.count>=a.next.count-1;
+        });
+        if(h.carry){verdict='PERTIMBANGKAN';reasons.push('carry potensial — ambil kalau mau pivot');}
+        else if(near){verdict='PERTIMBANGKAN';reasons.push('mendekati threshold sinergi');}
+        else reasons.push(targetComp?'tidak masuk rencana comp':'tidak memberi sinergi');
+      }
+    }
+    return{h,verdict,reasons};
   });
-  return bo>=2?best:null;
-}
-function itemsFor(lineup,comp){
-  if(comp&&comp.items&&comp.items.length)return{src:`meta "${comp.name}"`,items:comp.items.slice(0,3)};
-  const picks=EQUIPMENT.filter(e=>/damage|attack|crit/i.test(e.effect||'')).slice(0,3).map(e=>e.name);
-  return{src:'generik untuk carry',items:picks};
 }
 document.addEventListener('DOMContentLoaded',loadData);
 </script>
 <script>
 /* ============ UI ============ */
-const $=id=>document.getElementById(id);
 const heroImg=(h,sz=44)=>`<img src="img/heroes/${h.id}.webp" loading="lazy" style="width:${sz}px;height:${sz}px" onerror="this.style.display='none'">`;
-function buildCapChips(){
-  $('capChips').innerHTML=[3,4,5,6,7,8,9].map(c=>`<button class="chip${c===boardCap?' on':''}" onclick="boardCap=${c};buildCapChips()">Lv ${c}</button>`).join('');
-}
-function buildCostChips(){
-  const costs=['all',1,2,3,4,5,7];
-  $('costChips').innerHTML=costs.map(c=>`<button class="chip${String(poolCost)===String(c)?' on':''}" onclick="poolCost='${c}';buildCostChips();renderPool()">${c==='all'?'Semua':c+'💰'}</button>`).join('');
-}
-function renderPool(){
-  const q=$('q').value.toLowerCase(),g=$('poolGrid');g.innerHTML='';
-  HEROES.filter(h=>(poolCost==='all'||String(h.cost)===String(poolCost))&&h.name.toLowerCase().includes(q))
-    .sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name)).forEach(h=>{
+function pickerGrid(gridId,list,selIds,cls,onTap){
+  const g=$(gridId);g.innerHTML='';
+  list.forEach(h=>{
     const d=document.createElement('div');
-    d.className='hero'+(pool.includes(h.id)?' sel':'');
+    d.className='hero'+(selIds.includes(h.id)?' '+cls:'');
     d.innerHTML=`<span class="cost">${h.cost}💰</span>${h.carry?'<span class="carry">🔥</span>':''}${heroImg(h)}<span class="nm">${h.name}</span>`;
-    d.onclick=()=>{
-      const i=pool.indexOf(h.id);
-      if(i>=0)pool.splice(i,1);else pool.push(h.id);
-      $('poolCount').textContent=pool.length+' dipilih';renderPool();
-    };
+    d.onclick=()=>onTap(h.id);
     g.appendChild(d);
   });
 }
-function clearPool(){pool=[];$('poolCount').textContent='0 dipilih';$('racikResult').style.display='none';renderPool();}
-function renderBoard(){
-  const q=$('qb').value.toLowerCase(),g=$('boardGrid');g.innerHTML='';
-  HEROES.filter(h=>h.name.toLowerCase().includes(q)).sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name)).forEach(h=>{
-    const d=document.createElement('div');
-    d.className='hero'+(board.includes(h.id)?' sel':'');
-    d.innerHTML=`<span class="cost">${h.cost}💰</span>${heroImg(h)}<span class="nm">${h.name}</span>`;
-    d.onclick=()=>{
-      const i=board.indexOf(h.id);
-      if(i>=0)board.splice(i,1);else if(board.length<9)board.push(h.id);
-      $('boardCount').textContent=board.length+'/9';renderBoard();
-    };
-    g.appendChild(d);
+const sortedHeroes=q=>HEROES.filter(h=>h.name.toLowerCase().includes(q)).sort((a,b)=>a.cost-b.cost||a.name.localeCompare(b.name));
+function renderEarly(){
+  pickerGrid('earlyGrid',sortedHeroes($('qa').value.toLowerCase()),earlyIds,'sel',id=>{
+    const i=earlyIds.indexOf(id);
+    if(i>=0)earlyIds.splice(i,1);else if(earlyIds.length<9)earlyIds.push(id);
+    $('earlyCount').textContent=earlyIds.length+' dipilih';renderEarly();
   });
 }
-function clearBoard(){board=[];$('boardCount').textContent='0/9';$('lengkapiResult').innerHTML='';renderBoard();}
-const synDot=s=>{const t=(s.type||'').toLowerCase();return t.includes('role')?'var(--blu)':t.includes('faction')?'var(--pur)':'var(--dim)';};
-function synRow(a){
-  const s=a.syn;
-  const prog=a.unverified?`<span class="dim">data threshold S7 belum tersedia</span>`
-    :a.active?`<span class="cnt">${a.count} ✓ Lv${a.level}</span>`
-    :`<span class="cnt">${a.count}</span>${a.next?`<span class="next"> → butuh ${a.next.count}</span>`:''}`;
-  const eff=a.effect?`<div class="eff">${a.effect}</div>`:`<div class="eff dim">${(s.description||'').slice(0,120)}</div>`;
-  return`<div class="synrow${a.active?'':' off'}"><span class="dot" style="background:${synDot(s)}"></span>
-    <div><div class="nm">${s.name} <span class="dim">· ${s.type}</span></div>${eff}</div>
-    <div style="margin-left:auto;white-space:nowrap">${prog}</div></div>`;
+function clearEarly(){earlyIds=[];$('earlyCount').textContent='0 dipilih';$('arahResult').style.display='none';renderEarly();}
+function renderBoardP(){
+  pickerGrid('boardGrid',sortedHeroes($('qb').value.toLowerCase()),boardIds,'sel',id=>{
+    const i=boardIds.indexOf(id);
+    if(i>=0)boardIds.splice(i,1);else if(boardIds.length<9)boardIds.push(id);
+    $('boardCount').textContent=`(${boardIds.length}/9)`;renderBoardP();renderTarget();
+  });
 }
-function lineupHtml(lineup){
-  return`<div class="lu-grid">${lineup.map(h=>`<div class="lu-hero">${heroImg(h,52)}
-    <span class="nm">${h.name}</span><span class="cs">${h.cost}💰</span>${h.carry?'<span class="cb">🔥CARRY</span>':''}</div>`).join('')}</div>`;
+function renderShopP(){
+  pickerGrid('shopGrid',sortedHeroes($('qs').value.toLowerCase()),shopIds,'inshop',id=>{
+    const i=shopIds.indexOf(id);
+    if(i>=0)shopIds.splice(i,1);else if(shopIds.length<5)shopIds.push(id);
+    $('shopCount').textContent=`(${shopIds.length}/5)`;renderShopP();
+  });
 }
-function doRacik(){
-  const box=$('racikResult');
-  if(!pool.length){box.style.display='block';box.innerHTML='<div class="empty">Pilih dulu hero yang kamu punya ☝️</div>';return;}
-  const lineup=buildBest(pool,Math.min(boardCap,pool.length));
-  const acts=activeSyn(synCounts(lineup));
-  const comp=commanderFor(lineup);
-  const carries=lineup.filter(h=>h.carry);
-  const it=itemsFor(lineup,comp);
-  let h=`<div class="card"><div class="secT" style="margin-top:0">♟️ LINEUP RACIKAN (${lineup.length}/${boardCap})</div>${lineupHtml(lineup)}`;
-  h+=`<div class="secT">⚡ SINERGI AKTIF</div>`;
-  const on=acts.filter(a=>a.active),off=acts.filter(a=>!a.active);
-  h+=on.map(synRow).join('')||'<div class="empty">Belum ada sinergi aktif.</div>';
-  if(off.length)h+=`<div class="secT">🔧 PROGRES SINERGI</div>`+off.slice(0,4).map(synRow).join('');
-  if(carries.length){h+=`<div class="secT">🔥 CARRY & ITEM</div>`;
-    carries.forEach(c=>{h+=`<div class="strat">🔥 <b>${c.name}</b> — item: ${it.items.join(', ')} <span class="dim">(${it.src})</span></div>`;});}
-  if(comp)h+=`<div class="secT">👑 COMMANDER</div><div class="strat">👑 <b>${comp.commander}</b> <span class="dim">— cocok dengan meta "${comp.name}" (${comp.core_heroes.filter(n=>lineup.some(l=>l.name===n)).length} hero inti sama)</span></div>`;
-  const missing=(comp?comp.core_heroes:[]).filter(n=>!lineup.some(l=>l.name===n)).slice(0,3);
-  if(missing.length)h+=`<div class="strat">🎯 <b>Cari di shop:</b> ${missing.join(', ')} <span class="dim">— untuk melengkapi "${comp.name}"</span></div>`;
-  h+=`</div>`;
+function clearShop(){shopIds=[];$('shopCount').textContent='(0/5)';$('judgeResult').innerHTML='';renderShopP();}
+function doArah(){
+  const box=$('arahResult');
+  if(earlyIds.length<2){box.style.display='block';box.innerHTML='<div class="empty">Pilih minimal 2 hero awal ☝️</div>';return;}
+  const recs=recommendDirection();
+  if(!recs.length){box.style.display='block';box.innerHTML='<div class="empty">Tidak ada comp yang cocok. Coba hero lain.</div>';return;}
+  let h='<div class="secT" style="margin-top:0">🧭 REKOMENDASI ARAH</div>';
+  recs.forEach((r,i)=>{
+    const c=r.c;
+    h+=`<div class="card" style="${i===0?'border-color:var(--acc)':''}">
+      <div style="font-weight:800">${i===0?'⭐ ':''}${c.name} <span class="dim">· ${r.hit} hero cocok${r.synHit?` · ${r.synHit} sinergi nyambung`:''}</span></div>
+      <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
+      <div>${(c.core_heroes||[]).slice(0,9).map(n=>{const hh=byNameH(n);
+        return hh?`<span class="comp-hero ${earlyIds.includes(hh.id)?'owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${earlyIds.includes(hh.id)?'<span class="chk">✅</span>':''}</span>`:'';}).join('')}</div>
+      ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}
+      ${c.commander?`<div class="strat">👑 Commander: <b>${c.commander}</b></div>`:''}
+      <button class="btn" style="margin-top:6px" onclick="setTarget('${c.id}')">▶ Main Comp Ini</button>
+    </div>`;
+  });
   box.style.display='block';box.innerHTML=h;box.scrollTop=0;
 }
-function doLengkapi(){
-  const box=$('lengkapiResult');
-  if(!board.length){box.innerHTML='<div class="empty">Pilih dulu hero di board-mu ☝️</div>';return;}
-  const heroes=board.map(byIdH).filter(Boolean);
-  const acts=activeSyn(synCounts(heroes));
-  const sug=suggestNext(board);
-  let h=`<div class="card"><div class="secT" style="margin-top:0">♟️ BOARD-MU (${heroes.length})</div>${lineupHtml(heroes)}`;
-  h+=`<div class="secT">⚡ STATUS SINERGI</div>`+acts.map(synRow).join('');
-  if(sug.length){h+=`<div class="secT">🎯 BELI BERIKUTNYA</div>`;
-    sug.forEach((s,i)=>{h+=`<div class="synrow"><span class="dot" style="background:${i===0?'var(--acc)':'var(--dim)'}"></span>
-      <div><div class="nm">${s.h.name} <span class="dim">· ${s.h.cost}💰 · ${(s.h.synergies||[]).map(id=>{const x=synById(id);return x?x.name:id;}).join(', ')}</span></div>
-      <div class="eff">💡 ${s.reasons.join(' · ')||'menambah opsi'}</div></div></div>`;});}
-  else h+=`<div class="empty">Board sudah optimal dari hero yang ada. Naikkan level / cari bintang 2.</div>`;
-  h+=`</div>`;
+function setTarget(compId){
+  targetComp=COMPS.find(c=>c.id===compId)||null;
+  renderTarget();
+  const tabs=document.querySelectorAll('nav button');
+  goTab('tabJuri',tabs[1]);
+}
+function renderTarget(){
+  const b=$('targetBanner'),cp=$('compProgress');
+  if(!targetComp){
+    b.innerHTML='<span class="dim">🎯 Belum ada comp target — tentukan di tab 🧭 Arah dulu.</span>';
+    cp.innerHTML='';return;
+  }
+  const c=targetComp,owned=new Set(boardIds.map(byIdH).filter(Boolean).map(h=>h.name));
+  const have=(c.core_heroes||[]).filter(n=>owned.has(n)).length;
+  b.innerHTML=`<span style="font-size:20px">🎯</span><div><div style="font-weight:800">${c.name}</div>
+    <div class="dim">${have}/${(c.core_heroes||[]).length} hero inti terkumpul ${c.commander?`· 👑 ${c.commander}`:''} ${c.carry?`· 🔥 ${c.carry}`:''}</div></div>
+    <button class="btn ghost small" style="margin-left:auto" onclick="targetComp=null;renderTarget()">Ganti</button>`;
+  cp.innerHTML=`<div>${(c.core_heroes||[]).slice(0,10).map(n=>{const hh=byNameH(n);
+    return hh?`<span class="comp-hero${owned.has(n)?' owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${owned.has(n)?'<span class="chk">✅</span>':''}</span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>`;
+}
+function doJudge(){
+  const box=$('judgeResult');
+  if(!shopIds.length){box.innerHTML='<div class="empty">Pilih dulu hero yang muncul di shop ☝️</div>';return;}
+  const res=judgeShop();
+  const order={'BELI':0,'PERTIMBANGKAN':1,'SKIP':2};
+  res.sort((a,b)=>order[a.verdict]-order[b.verdict]);
+  let h='<div class="secT" style="margin-top:0">⚡ HASIL PENILAIAN</div>';
+  res.forEach(r=>{
+    const dot=r.verdict==='BELI'?'var(--grn)':r.verdict==='PERTIMBANGKAN'?'var(--ylw)':'var(--dim)';
+    h+=`<div class="synrow"><span class="dot" style="background:${dot}"></span>${heroImg(r.h,40)}
+      <div style="flex:1"><div class="nm">${r.h.name} <span class="dim">· ${r.h.cost}💰</span></div>
+      <div class="eff">💡 ${r.reasons.join(' · ')}</div></div>
+      <div style="text-align:right"><span class="v-${r.verdict}">${r.verdict}</span>
+      ${r.verdict==='BELI'?`<div style="margin-top:6px"><button class="btn small" onclick="buyHero('${r.h.id}')">+ Board</button></div>`:''}</div></div>`;
+  });
+  const beli=res.filter(r=>r.verdict==='BELI').length;
+  if(!beli)h+=`<div class="strat">💰 <b>Skip / reroll.</b> Tidak ada yang masuk rencana — simpan gold untuk interest, atau roll kalau butuh bintang 2.</div>`;
   box.innerHTML=h;box.scrollTop=0;
+}
+function buyHero(id){
+  if(!boardIds.includes(id)&&boardIds.length<9){boardIds.push(id);$('boardCount').textContent=`(${boardIds.length}/9)`;}
+  const i=shopIds.indexOf(id);if(i>=0)shopIds.splice(i,1);
+  $('shopCount').textContent=`(${shopIds.length}/5)`;
+  renderBoardP();renderShopP();renderTarget();doJudge();
 }
 function renderMeta(){
   const box=$('metaList');
   box.innerHTML=COMPS.map(c=>`<div class="card">
     <div class="t" style="font-weight:800">${c.name} ${c.unverified?'<span class="dim">(belum terverifikasi)</span>':''}</div>
     <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
-    <div>${(c.core_heroes||[]).map(n=>{const h=HEROES.find(x=>x.name===n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>
+    <div>${(c.core_heroes||[]).map(n=>{const h=byNameH(n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>
     ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}
     ${c.commander?`<div class="strat">👑 Commander: <b>${c.commander}</b></div>`:''}
     ${c.early_game?`<div class="dim">📝 ${c.early_game}</div>`:''}
     ${c.notes?`<div class="dim">⚠️ ${c.notes}</div>`:''}
-  </div>`).join('');
+  </div>
+  <button class="btn ghost small" style="margin:-4px 0 10px" onclick="setTarget('${c.id}')">▶ Jadikan Target</button>`).join('');
 }
 function buildDataChips(){
   const tabs=[['synergy','⚡ Sinergi'],['hero','🦸 Hero'],['commander','👑 Commander'],['item','🛠️ Item']];
@@ -347,5 +378,58 @@ function renderDataList(){
 }
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));}
 </script>
+<script>
+/* ============ EKONOMI ============ */
+let econGoldV=30,econStreak='-',econLevel=8;
+function econGold(d){econGoldV=Math.max(0,Math.min(99,econGoldV+d));$('econGoldVal').textContent=econGoldV;}
+function buildEconChips(){
+  $('econStreakChips').innerHTML=['-','W2','W3','W4+','L2','L3','L4+'].map(s=>`<button class="chip${econStreak===s?' on':''}" onclick="econStreak='${s}';buildEconChips()">${s==='-'?'Tidak streak':s.replace('W','🔥W').replace('L','📉L')}</button>`).join('');
+  $('econLevelChips').innerHTML=[6,7,8,9,10].map(l=>`<button class="chip${econLevel===l?' on':''}" onclick="econLevel=${l};buildEconChips()">Lv ${l}</button>`).join('');
+}
+function carryCost(){
+  if(!targetComp||!targetComp.carry)return null;
+  const h=byNameH(targetComp.carry);return h?h.cost:null;
+}
+function doEcon(){
+  const g=econGoldV;
+  const interest=Math.min(4,Math.floor(g/10)*2);
+  const need=g<20?20-g:0;
+  const cc=carryCost();
+  const arch=cc==null?'umum':cc<=2?`Reroll (carry ${cc}💰)`:cc===3?`Reroll/Standar (carry ${cc}💰)`:cc>=5?`Legend rush (carry ${cc}💰)`:`Standar (carry ${cc}💰)`;
+  const acts=[];
+  let title;
+  if(g<10){title='💰 <b>SIMPAN TOTAL</b>';acts.push('Kejar 10 gold dulu biar interest jalan. Jangan beli apa pun kecuali hero inti comp.');}
+  else if(g<20){title='💰 <b>SIMPAN</b>';acts.push(`Kurang <b>${need} gold</b> menuju garis 20 (+4 interest maksimal). Belanja hanya untuk hero inti comp.`);}
+  else{title='✅ <b>ECON AMAN</b>';acts.push('Interest maksimal (+4) terkunci di 20 gold. Gold di atas 20 boleh dipakai.');}
+  if(arch.startsWith('Reroll'))acts.push('🎲 <b>Slow roll:</b> roll secukupnya tapi JANGAN turun di bawah 20 gold. Target: carry bintang 3.');
+  else if(arch.startsWith('Legend'))acts.push('👑 <b>Push level:</b> level 9 = checkpoint normal, lanjut ke 10 kalau gold berlebih. Simpan semua gold; roll hanya saat board sudah stabil.');
+  else if(arch.startsWith('Standar'))acts.push('📈 <b>Naik level dulu</b> (8–9), baru roll di atas 20 gold untuk cari carry.');
+  else acts.push('🎯 Tentukan comp target di tab 🧭 Arah biar keputusannya lebih tajam.');
+  if(econStreak[0]==='W')acts.push('🔥 <b>Win streak:</b> jangan roll panik — pertahankan kekuatan board, econ jalan sendiri.');
+  else if(econStreak[0]==='L')acts.push('📉 <b>Lose streak:</b> hemat maksimal, jangan paksa roll. Kalah terkontrol = econ gratis.');
+  if(econLevel<8)acts.push(`📊 Level ${econLevel}: prioritaskan naik level sebelum banyak roll — hero cost tinggi butuh level tinggi.`);
+  $('econResult').innerHTML=`<div class="card" style="border-color:var(--grn)">
+    <div class="secT" style="margin-top:0">💰 KEPUTUSAN RONDE INI</div>
+    <div style="font-size:16px;margin-bottom:6px">${title}</div>
+    <div class="dim" style="margin-bottom:6px">Interest ronde ini: <b style="color:var(--acc)">+${interest}</b>${need?` · ${need} lagi menuju +4`:' · maksimal'} <span class="dim">(angka dari sumber komunitas)</span></div>
+    <div class="dim" style="margin-bottom:6px">Archetype comp: <b>${arch}</b></div>
+    ${acts.map(a=>`<div class="strat">${a}</div>`).join('')}
+  </div>`;
+}
+function renderEconPlaybook(){
+  if(!ECON)return;
+  const box=$('econPlaybook');
+  let h=`<div class="card"><div class="secT" style="margin-top:0">💵 INTEREST</div>
+    <div class="strat">Simpan <b>10 gold → +2</b>, <b>20 gold → +4</b> (maksimal). Garis <b>20 gold</b> adalah patokan Season 7.1 — jangan turun di bawahnya kecuali pembelian benar-benar worth it.</div>
+    <div class="strat">📊 <b>Level 9</b> = checkpoint normal. Push ke <b>level 10</b> hanya jika gold berlebih atau butuh hero 5-cost.</div></div>`;
+  (ECON.strategies||[]).forEach(s=>{
+    if(/interest/i.test(s.name||''))return;
+    h+=`<div class="card"><div style="font-weight:800">${s.name}</div><div class="dim" style="margin-top:4px;line-height:1.5">${s.summary||''}</div></div>`;
+  });
+  h+=`<div class="dim" style="text-align:center;padding:8px">Angka interest dari beberapa sumber komunitas (bukan patch notes resmi). Base income & bonus streak S7.1 belum ada sumber resminya.</div>`;
+  box.innerHTML=h;
+}
+</script>
 </body>
 </html>
+

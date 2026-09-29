@@ -69,12 +69,43 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .v-PERTIMBANGKAN{color:#2a1f06;background:var(--ylw);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
 .v-SKIP{color:var(--dim);background:#1a2436;border:1px solid var(--line);font-weight:800;font-size:12px;padding:4px 10px;border-radius:8px;white-space:nowrap;}
 .banner{background:linear-gradient(135deg,#1c2a15,#141c30);border:1px solid var(--grn);border-radius:14px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+/* ===== ENGINE MODE 🎮 ===== */
+.erow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.estep{display:flex;align-items:center;gap:6px;background:#0f1626;border:1px solid var(--line);border-radius:10px;padding:5px 6px;font-size:12px;}
+.estep span{color:var(--dim);font-weight:700;}
+.estep button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:#1a2436;color:var(--txt);font-weight:800;font-size:14px;cursor:pointer;}
+.estep b{min-width:30px;text-align:center;font-size:14px;}
+.board{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;}
+.bcell{aspect-ratio:.92;background:#0f1626;border:1px solid var(--line);border-radius:8px;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:38px;}
+.bcell img{width:100%;height:100%;object-fit:cover;}
+.bcell .st{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:800;background:rgba(0,0,0,.78);color:var(--acc);padding:0 5px;border-radius:6px;white-space:nowrap;line-height:1.6;}
+.bcell .it{position:absolute;top:1px;right:2px;font-size:9px;background:var(--pur);color:#fff;border-radius:6px;padding:0 4px;font-weight:800;line-height:1.6;}
+.bcell.f{border-color:var(--grn);}
+.bcell.mv{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc);}
+.bcell .pl{color:#3a4763;font-size:18px;font-weight:800;}
+.bench{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;}
+.bench .bcell{flex:0 0 54px;height:54px;aspect-ratio:auto;}
+.shop5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+.bagit{background:#1a2436;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer;color:var(--txt);}
+.ord{display:flex;gap:10px;background:#0f1626;border-radius:12px;padding:10px;margin-bottom:8px;align-items:flex-start;}
+.onum{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#1a1206;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.ord .t{font-weight:800;margin-bottom:3px;font-size:13px;line-height:1.4;}
+.ord .d{font-size:12.5px;line-height:1.5;}
+.sheetWrap{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:flex-end;justify-content:center;z-index:99;}
+.sheet{background:#141c30;width:100%;max-width:560px;max-height:84%;border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);}
+.shead{display:flex;align-items:center;gap:8px;padding:12px;border-bottom:1px solid var(--line);}
+.shead b{flex:1;font-size:15px;}
+.sbody{overflow-y:auto;padding:10px 12px 18px;}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.irow{display:flex;align-items:center;gap:8px;background:#0f1626;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:6px;cursor:pointer;font-size:13px;}
+.irow .t{flex:1;min-width:0;}
 </style>
 </head>
 <body>
 <header><div class="ttl">♟️ <b>MC</b> Lineup Coach</div><div class="sub" id="dataInfo">Magic Chess · Season 7.1</div></header>
 <nav>
 <button class="on" onclick="goTab('tabCmd',this)">🧑‍✈️ Commander</button>
+<button onclick="goTab('tabEng',this)">🎮 Engine</button>
 <button onclick="goTab('tabArah',this)">🧭 Arah</button>
 <button onclick="goTab('tabJuri',this)">⚡ Juri Shop</button>
 <button onclick="goTab('tabEcon',this)">💰 Ekonomi</button>
@@ -88,6 +119,33 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
   <div class="search"><input id="qc" placeholder="Cari commander…" oninput="renderCommanders()"></div>
   <div class="grid" id="cmdGrid" style="flex:0 1 auto"></div>
   <div id="cmdDetail" style="margin-top:8px"></div>
+</div></div>
+<div class="tab" id="tabEng"><div class="scroll">
+  <div class="card">
+    <div class="secT" style="margin-top:0">🎮 STATUS GAME <span class="dim" id="engCmd"></span></div>
+    <div class="erow">
+      <div class="estep"><span>Ronde</span><button onclick="engStep('round',-1)">−</button><b id="eRound">1</b><button onclick="engStep('round',1)">+</button></div>
+      <div class="estep"><span>Level</span><button onclick="engStep('level',-1)">−</button><b id="eLevel">3</b><button onclick="engStep('level',1)">+</button></div>
+      <div class="estep"><span>Gold</span><button onclick="engStep('gold',-5)">−</button><b id="eGold">10</b><button onclick="engStep('gold',5)">+</button></div>
+      <div class="estep"><span>HP</span><button onclick="engStep('hp',-5)">−</button><b id="eHp">100</b><button onclick="engStep('hp',5)">+</button></div>
+    </div>
+    <div class="erow">
+      <div class="estep"><span>Streak</span><button onclick="engStreakT()" id="eStreakT">W/L</button><b id="eStreak">-</b><button onclick="engStep('streakN',-1)">−</button><button onclick="engStep('streakN',1)">+</button></div>
+      <button class="btn small" onclick="engNextRound()">⏭ Ronde baru</button>
+      <button class="btn small ghost" onclick="engReset()">🗑</button>
+    </div>
+    <div class="dim">Mirror keadaan game dari HP satunya — engine yang kasih perintah, kamu yang eksekusi. Data tersimpan otomatis.</div>
+  </div>
+  <div class="secT">♟️ PAPAN <span class="dim" id="engCap"></span> <span class="dim">· ⬆️ baris 1–2 = depan (musuh)</span></div>
+  <div class="board" id="engBoard"></div>
+  <div class="secT">🎒 BANGKU <span class="dim">· hero dibeli masuk sini</span></div>
+  <div class="bench" id="engBench"></div>
+  <div class="secT">🛒 SHOP RONDE INI</div>
+  <div class="shop5" id="engShop"></div>
+  <div class="secT">🛠️ TAS ITEM <span class="dim" id="engBagN"></span></div>
+  <div id="engBag" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px"></div>
+  <button class="btn" onclick="genOrders()">⚡ MINTA PERINTAH</button>
+  <div id="engOrders" style="margin-top:10px"></div>
 </div></div>
 <div class="tab" id="tabArah"><div class="scroll">
   <div id="arahCmdBanner"></div>
@@ -175,6 +233,7 @@ async function loadData(){
   $('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
   renderEarly();renderBoardP();renderShopP();renderMeta();buildDataChips();renderDataList();renderTarget();
   buildEconChips();renderEconPlaybook();buildTutorChips();renderGuides();renderCommanders();renderArahBanner();
+  loadEng();renderEng();
 }
 /* ============ ENGINE ============ */
 const byIdH=id=>HEROES.find(h=>h.id===id);
@@ -205,10 +264,9 @@ function compKeys(c){
   }
   _ckCache[c.id]=keys;return keys;
 }
-function recommendDirection(){
-  const early=earlyIds.map(byIdH).filter(Boolean);
-  const names=new Set(early.map(h=>h.name));
-  const esyns=new Set();early.forEach(h=>(h.synergies||[]).forEach(s=>esyns.add(s)));
+function recommendFrom(heroObjs){
+  const names=new Set(heroObjs.map(h=>h.name));
+  const esyns=new Set();heroObjs.forEach(h=>(h.synergies||[]).forEach(s=>esyns.add(s)));
   return COMPS.map(c=>{
     const core=c.core_heroes||[];
     const hit=core.filter(n=>names.has(n)).length;
@@ -219,16 +277,18 @@ function recommendDirection(){
     return{c,hit,synHit,score,cmdMatch};
   }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score).slice(0,3);
 }
+function recommendDirection(){return recommendFrom(earlyIds.map(byIdH).filter(Boolean));}
 /* --- Juri shop: nilai tiap hero di shop --- */
-function judgeShop(){
-  const board=boardIds.map(byIdH).filter(Boolean);
+function judgeShop(boardList,shopList,tgt){
+  boardList=boardList||boardIds;shopList=shopList||shopIds;tgt=(tgt===undefined)?targetComp:tgt;
+  const board=boardList.map(byIdH).filter(Boolean);
   const counts=synCounts(board);
   const ownedNames=new Set(board.map(h=>h.name));
-  return shopIds.map(byIdH).filter(Boolean).map(h=>{
+  return shopList.map(byIdH).filter(Boolean).map(h=>{
     let verdict='SKIP',reasons=[];
     if(ownedNames.has(h.name)){reasons.push('sudah ada di board');}
-    else if(targetComp&&(targetComp.core_heroes||[]).includes(h.name)){
-      verdict='BELI';reasons.push(`inti comp "${targetComp.name}"`);
+    else if(tgt&&(tgt.core_heroes||[]).includes(h.name)){
+      verdict='BELI';reasons.push(`inti comp "${tgt.name}"`);
       if(h.carry)reasons.push('🔥 carry');
     }else{
       const nb=board.concat([h]);
@@ -249,7 +309,7 @@ function judgeShop(){
         });
         if(h.carry){verdict='PERTIMBANGKAN';reasons.push('carry potensial — ambil kalau mau pivot');}
         else if(near){verdict='PERTIMBANGKAN';reasons.push('mendekati threshold sinergi');}
-        else reasons.push(targetComp?'tidak masuk rencana comp':'tidak memberi sinergi');
+        else reasons.push(tgt?'tidak masuk rencana comp':'tidak memberi sinergi');
       }
     }
     return{h,verdict,reasons};
@@ -419,8 +479,7 @@ function carryCost(){
   if(!targetComp||!targetComp.carry)return null;
   const h=byNameH(targetComp.carry);return h?h.cost:null;
 }
-function doEcon(){
-  const g=econGoldV;
+function econAdvice(g,lvl,streak){
   const interest=Math.min(4,Math.floor(g/10)*2);
   const need=g<20?20-g:0;
   const cc=carryCost();
@@ -440,15 +499,20 @@ function doEcon(){
   else if(arch.startsWith('Legend'))acts.push('👑 <b>Push level:</b> level 9 = checkpoint normal, lanjut ke 10 kalau gold berlebih. Simpan semua gold; roll hanya saat board sudah stabil.');
   else if(arch.startsWith('Standar'))acts.push('📈 <b>Naik level dulu</b> (8–9), baru roll di atas 20 gold untuk cari carry.');
   else acts.push('🎯 Tentukan comp target di tab 🧭 Arah biar keputusannya lebih tajam.');
-  if(econStreak[0]==='W')acts.push('🔥 <b>Win streak:</b> jangan roll panik — pertahankan kekuatan board, econ jalan sendiri.');
-  else if(econStreak[0]==='L')acts.push('📉 <b>Lose streak:</b> hemat maksimal, jangan paksa roll. Kalah terkontrol = econ gratis.');
-  if(econLevel<8)acts.push(`📊 Level ${econLevel}: prioritaskan naik level sebelum banyak roll — hero cost tinggi butuh level tinggi.`);
+  if(activeCommander!=='lancelot'&&g>=20){const r=Math.floor((g-20)/2);if(r>0)acts.push(`🎲 Boleh roll <b>${r}×</b> — sisakan 20 gold.`);}
+  if(streak[0]==='W')acts.push('🔥 <b>Win streak:</b> jangan roll panik — pertahankan kekuatan board, econ jalan sendiri.');
+  else if(streak[0]==='L')acts.push('📉 <b>Lose streak:</b> hemat maksimal, jangan paksa roll. Kalah terkontrol = econ gratis.');
+  if(lvl<8)acts.push(`📊 Level ${lvl}: prioritaskan naik level sebelum banyak roll — hero cost tinggi butuh level tinggi.`);
+  return{title,acts,interest,need,arch};
+}
+function doEcon(){
+  const a=econAdvice(econGoldV,econLevel,econStreak);
   $('econResult').innerHTML=`<div class="card" style="border-color:var(--grn)">
     <div class="secT" style="margin-top:0">💰 KEPUTUSAN RONDE INI</div>
-    <div style="font-size:16px;margin-bottom:6px">${title}</div>
-    <div class="dim" style="margin-bottom:6px">Interest ronde ini: <b style="color:var(--acc)">+${interest}</b>${need?` · ${need} lagi menuju +4`:' · maksimal'} <span class="dim">(angka dari sumber komunitas)</span></div>
-    <div class="dim" style="margin-bottom:6px">Archetype comp: <b>${arch}</b></div>
-    ${acts.map(a=>`<div class="strat">${a}</div>`).join('')}
+    <div style="font-size:16px;margin-bottom:6px">${a.title}</div>
+    <div class="dim" style="margin-bottom:6px">Interest ronde ini: <b style="color:var(--acc)">+${a.interest}</b>${a.need?` · ${a.need} lagi menuju +4`:' · maksimal'} <span class="dim">(angka dari sumber komunitas)</span></div>
+    <div class="dim" style="margin-bottom:6px">Archetype comp: <b>${a.arch}</b></div>
+    ${a.acts.map(x=>`<div class="strat">${x}</div>`).join('')}
   </div>`;
 }
 function renderEconPlaybook(){
@@ -566,6 +630,325 @@ function renderArahBanner(){
   b.innerHTML=`<div class="banner"><div style="width:36px;height:36px;border-radius:50%;background:${cmdColor(c.name)};display:flex;align-items:center;justify-content:center;font-weight:800;flex:0 0 auto">${c.name[0]}</div>
     <div><div style="font-weight:800">🧑‍✈️ ${c.name}</div><div class="dim">Rekomendasi comp menyesuaikan commandermu</div></div>
     <button class="btn ghost small" style="margin-left:auto" onclick="goTab('tabCmd',document.querySelectorAll('nav button')[0])">Ganti</button></div>`;
+}
+</script>
+<script>
+/* ============ ENGINE MODE 🎮 — simulasi live, web yang menentukan ============ */
+let ENG=null;
+function defEng(){return{round:1,level:3,gold:10,hp:100,streakT:'W',streakN:0,
+  board:new Array(32).fill(null),bench:new Array(9).fill(null),
+  shop:new Array(5).fill(null),bag:[],move:null};}
+function saveEng(){try{localStorage.setItem('mcEngV1',JSON.stringify(ENG));}catch(e){}}
+function loadEng(){
+  try{
+    const s=JSON.parse(localStorage.getItem('mcEngV1')||'null');
+    ENG=Object.assign(defEng(),s||{});
+    if(!Array.isArray(ENG.board)||ENG.board.length!==32)ENG.board=new Array(32).fill(null);
+    if(!Array.isArray(ENG.bench)||ENG.bench.length!==9)ENG.bench=new Array(9).fill(null);
+    if(!Array.isArray(ENG.shop)||ENG.shop.length!==5)ENG.shop=new Array(5).fill(null);
+    if(!Array.isArray(ENG.bag))ENG.bag=[];
+  }catch(e){ENG=defEng();}
+  ENG.move=null;
+}
+function engStep(k,d){
+  const lim={round:[1,40],level:[3,10],gold:[0,99],hp:[0,100],streakN:[0,9]};
+  ENG[k]=Math.max(lim[k][0],Math.min(lim[k][1],ENG[k]+d));saveEng();renderEng();
+}
+function engStreakT(){ENG.streakT=ENG.streakT==='W'?'L':'W';if(ENG.streakN===0)ENG.streakN=1;saveEng();renderEng();}
+function engStreakStr(){return ENG.streakN===0?'-':ENG.streakT+ENG.streakN+(ENG.streakN>=4?'+':'');}
+function engUnits(){
+  const u=[];
+  ENG.board.forEach((x,i)=>{if(x&&byIdH(x.id))u.push(Object.assign({zone:'board',i,r:Math.floor(i/8),c:i%8,h:byIdH(x.id)},x));});
+  ENG.bench.forEach((x,i)=>{if(x&&byIdH(x.id))u.push(Object.assign({zone:'bench',i,r:-1,c:-1,h:byIdH(x.id)},x));});
+  return u;
+}
+function cellImg(h){return `<img src="img/heroes/${h.id}.webp" loading="lazy" onerror="this.style.display='none'">`;}
+function cellHtml(u,zone,i){
+  const h=u?(u.h||byIdH(u.id)):null;
+  if(!u||!h)return `<div class="bcell" onclick="engTap('${zone}',${i})"><span class="pl">+</span></div>`;
+  const mv=ENG.move&&ENG.move.zone===zone&&ENG.move.i===i?' mv':'';
+  return `<div class="bcell f${mv}" onclick="engTap('${zone}',${i})">${cellImg(h)}`
+    +`<span class="st">${'★'.repeat(u.star||1)}</span>`
+    +((u.items&&u.items.length)?`<span class="it">${u.items.length}</span>`:'')+`</div>`;
+}
+function renderEng(){
+  if(!ENG)return;
+  $('eRound').textContent=ENG.round;$('eLevel').textContent=ENG.level;
+  $('eGold').textContent=ENG.gold;$('eHp').textContent=ENG.hp;
+  $('eStreak').textContent=engStreakStr();
+  $('eStreakT').textContent=ENG.streakT==='W'?'🔥W':'📉L';
+  const cmd=activeCommander?COMMANDERS.find(x=>x.id===activeCommander):null;
+  $('engCmd').innerHTML=cmd?`· 🧑‍✈️ <b>${cmd.name}</b>`:'· <span style="color:var(--red)">⚠️ pilih commander dulu di tab 🧑‍✈️</span>';
+  const nB=ENG.board.filter(Boolean).length;
+  $('engCap').textContent=`(${nB}/${ENG.level})`;
+  $('engCap').style.color=nB>ENG.level?'var(--red)':'';
+  let bh='';
+  for(let i=0;i<32;i++)bh+=cellHtml(ENG.board[i],'board',i);
+  if(ENG.move)bh+=`<div class="dim" style="grid-column:1/-1;padding:4px 0">📦 Mode pindah: tap kotak tujuan… <button class="btn small ghost" onclick="ENG.move=null;renderEng()">Batal</button></div>`;
+  $('engBoard').innerHTML=bh;
+  let ch='';
+  for(let i=0;i<9;i++)ch+=cellHtml(ENG.bench[i],'bench',i);
+  $('engBench').innerHTML=ch;
+  let sh='';
+  for(let i=0;i<5;i++){
+    const id=ENG.shop[i],h=id?byIdH(id):null;
+    sh+=h?`<div class="bcell f" onclick="engTap('shop',${i})">${cellImg(h)}<span class="st">${h.cost}💰</span></div>`
+         :`<div class="bcell" onclick="engTap('shop',${i})"><span class="pl">+</span></div>`;
+  }
+  $('engShop').innerHTML=sh;
+  $('engBagN').textContent=`(${ENG.bag.length})`;
+  $('engBag').innerHTML=ENG.bag.map((id,ix)=>{const e=EQUIPMENT.find(x=>x.id===id);
+      return e?`<button class="bagit" onclick="engBagTap(${ix})">🛠️ ${e.name} ✕</button>`:'';}).join('')
+    +`<button class="bagit" style="border-style:dashed" onclick="pickItem(id=>{ENG.bag.push(id);saveEng();renderEng();},'Item apa yang dapat?')">+ Item</button>`;
+}
+function engBagTap(ix){ENG.bag.splice(ix,1);saveEng();renderEng();}
+function engTap(zone,i){
+  if(ENG.move){
+    const m=ENG.move;ENG.move=null;
+    const A=m.zone==='board'?ENG.board:ENG.bench, B=zone==='board'?ENG.board:ENG.bench;
+    const t=B[i];B[i]=A[m.i];A[m.i]=t;
+    saveEng();renderEng();return;
+  }
+  if(zone==='shop'){pickHero(id=>{ENG.shop[i]=id;saveEng();renderEng();},'Hero apa di shop?');return;}
+  const arr=zone==='board'?ENG.board:ENG.bench;
+  const u=arr[i];
+  if(!u){pickHero(id=>{arr[i]={id,star:1,items:[]};saveEng();renderEng();},zone==='board'?'Taruh hero di papan':'Taruh hero di bangku');return;}
+  unitSheet(zone,i,u);
+}
+function engStar(zone,i){
+  const u=(zone==='board'?ENG.board:ENG.bench)[i];
+  if(u&&u.star<3){u.star++;saveEng();renderEng();closeSheet();}
+}
+function engSell(zone,i){
+  const arr=zone==='board'?ENG.board:ENG.bench;
+  arr[i]=null;saveEng();renderEng();closeSheet();
+}
+function engGiveItem(zone,i,itemId){
+  const u=(zone==='board'?ENG.board:ENG.bench)[i];
+  if(!u)return;
+  u.items=u.items||[];
+  if(u.items.length>=3){closeSheet();return;}
+  const bi=ENG.bag.indexOf(itemId);if(bi>=0)ENG.bag.splice(bi,1);
+  u.items.push(itemId);saveEng();renderEng();closeSheet();
+}
+function engUnitem(zone,i,itemId){
+  const u=(zone==='board'?ENG.board:ENG.bench)[i];
+  if(!u||!u.items)return;
+  const ix=u.items.indexOf(itemId);if(ix>=0){u.items.splice(ix,1);ENG.bag.push(itemId);}
+  saveEng();renderEng();unitSheet(zone,i,u);
+}
+function engBuy(id){
+  const bi=ENG.bench.findIndex(x=>!x);
+  if(bi<0)return;
+  ENG.bench[bi]={id,star:1,items:[]};
+  const si=ENG.shop.indexOf(id);if(si>=0)ENG.shop[si]=null;
+  saveEng();renderEng();
+  if($('engOrders').innerHTML.trim())genOrders();
+}
+/* ---- bottom sheet ---- */
+function openSheet(html){
+  let m=$('sheet');
+  if(!m){m=document.createElement('div');m.id='sheet';m.className='sheetWrap';
+    m.innerHTML='<div class="sheet" id="sheetBox"></div>';
+    m.addEventListener('click',e=>{if(e.target===m)closeSheet();});
+    document.body.appendChild(m);}
+  $('sheetBox').innerHTML=html;m.style.display='flex';
+}
+function closeSheet(){const m=$('sheet');if(m)m.style.display='none';}
+let _pickCb=null;
+function pickHero(cb,title){
+  _pickCb=cb;
+  openSheet(`<div class="shead"><b>${title||'Pilih hero'}</b><button class="btn small ghost" onclick="closeSheet()">✕</button></div>
+  <div class="sbody"><div class="search"><input id="pq" placeholder="Cari hero…" oninput="renderPickHero()"></div><div class="pgrid" id="pickGrid"></div></div>`);
+  renderPickHero();
+}
+function renderPickHero(){
+  const q=(($('pq')||{}).value||'').toLowerCase();
+  $('pickGrid').innerHTML=sortedHeroes(q).map(h=>
+    `<div class="hero" onclick="_pickCb('${h.id}');closeSheet();"><span class="cost">${h.cost}💰</span>${h.carry?'<span class="carry">🔥</span>':''}<img src="img/heroes/${h.id}.webp" loading="lazy" onerror="this.style.display='none'"><span class="nm">${h.name}</span></div>`
+  ).join('');
+}
+function pickItem(cb,title){
+  _pickCb=cb;
+  openSheet(`<div class="shead"><b>${title||'Pilih item'}</b><button class="btn small ghost" onclick="closeSheet()">✕</button></div>
+  <div class="sbody"><div class="search"><input id="piq" placeholder="Cari item…" oninput="renderPickItem()"></div><div id="pickItemList"></div></div>`);
+  renderPickItem();
+}
+function renderPickItem(){
+  const q=(($('piq')||{}).value||'').toLowerCase();
+  $('pickItemList').innerHTML=EQUIPMENT.filter(e=>e.name.toLowerCase().includes(q)).slice(0,60).map(e=>
+    `<div class="irow" onclick="_pickCb('${e.id}');closeSheet();"><div class="t"><b>${e.name}</b> <span class="dim">· ${e.category||''}</span><br><span class="dim">${trunc(e.effect||'',90)}</span></div><span>＋</span></div>`
+  ).join('');
+}
+function unitSheet(zone,i,u){
+  const h=byIdH(u.id);if(!h)return;
+  const starBtn=u.star<3?`<button class="btn" onclick="engStar('${zone}',${i})">⭐ Naik ke ${'★'.repeat(u.star+1)}</button>`:`<div class="dim">Sudah ★3 maksimal</div>`;
+  const items=(u.items||[]).map(id=>{const e=EQUIPMENT.find(x=>x.id===id);
+    return e?`<div class="synrow"><span>🛠️</span><div class="nm" style="flex:1">${e.name}</div><button class="btn small ghost" onclick="engUnitem('${zone}',${i},'${id}')">Lepas</button></div>`:'';}).join('');
+  const bagBtns=ENG.bag.length?ENG.bag.map(id=>{const e=EQUIPMENT.find(x=>x.id===id);
+    return e?`<button class="bagit" onclick="engGiveItem('${zone}',${i},'${id}')">＋ ${e.name}</button>`:'';}).join('')
+    :'<span class="dim">Tas kosong — tambah item di seksi 🛠️ TAS ITEM.</span>';
+  openSheet(`<div class="shead"><b>${h.name}</b><span class="dim">${'★'.repeat(u.star)} · ${h.cost}💰</span><button class="btn small ghost" onclick="closeSheet()">✕</button></div>
+  <div class="sbody">${items}
+    <div class="secT">🎒 KASIH ITEM DARI TAS</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">${bagBtns}</div>
+    <div style="display:flex;flex-direction:column;gap:8px">${starBtn}
+    <button class="btn ghost" onclick="ENG.move={zone:'${zone}',i:${i}};closeSheet();renderEng()">📦 Pindah posisi</button>
+    <button class="btn ghost" style="color:var(--red)" onclick="engSell('${zone}',${i})">🗑️ Jual / buang</button>
+    </div></div>`);
+}
+/* ---- logika positioning ---- */
+const FRONT_SYN=['bruiser','dauntless','weapon_master','defender','swordsman'];
+const BACK_SYN=['mage','marksman','stargazer'];
+function laneOf(h){const s=h.synergies||[];
+  if(s.some(x=>BACK_SYN.includes(x)))return 'back';
+  if(s.some(x=>FRONT_SYN.includes(x)))return 'front';
+  return 'mid';}
+function carryUnit(bUnits,comp){
+  let u=null;
+  if(comp&&comp.carry)u=bUnits.find(x=>x.h.name===comp.carry);
+  if(!u)u=bUnits.find(x=>x.h.carry);
+  if(!u)u=bUnits.slice().sort((a,b)=>b.h.cost-a.h.cost)[0];
+  return u||null;
+}
+function posSuggest(bUnits,comp){
+  const out=[],cu=carryUnit(bUnits,comp);
+  bUnits.forEach(u=>{
+    const lane=(cu&&u.i===cu.i&&u.zone===cu.zone)?'back':laneOf(u.h);
+    const back=u.r>=2;
+    if(cu&&u.zone===cu.zone&&u.i===cu.i&&!back)out.push(`🔥 <b>${u.h.name}</b> itu carry — terlalu depan! Pindah ke <b>baris 3–4</b>.`);
+    else if(lane==='back'&&!back)out.push(`🏹 <b>${u.h.name}</b> enaknya di belakang — pindah ke <b>baris 3–4</b>.`);
+    else if(lane==='front'&&back)out.push(`🛡️ <b>${u.h.name}</b> hero garis depan — majukan ke <b>baris 1–2</b>.`);
+  });
+  return out.slice(0,4);
+}
+function autoPosition(){
+  const emptB=[],emptF=[];
+  ENG.board.forEach((x,i)=>{if(!x){(Math.floor(i/8)>=2?emptB:emptF).push(i);}});
+  const bU=engUnits().filter(u=>u.zone==='board');
+  const cu=carryUnit(bU,targetComp);
+  bU.forEach(u=>{
+    const lane=(cu&&u.i===cu.i)?'back':laneOf(u.h);
+    const isBack=u.r>=2;
+    if(lane==='back'&&!isBack&&emptB.length){
+      const t=emptB.shift();ENG.board[t]=ENG.board[u.i];ENG.board[u.i]=null;emptF.push(u.i);
+    }else if(lane==='front'&&isBack&&emptF.length){
+      const t=emptF.shift();ENG.board[t]=ENG.board[u.i];ENG.board[u.i]=null;emptB.push(u.i);
+    }
+  });
+  saveEng();renderEng();genOrders();
+}
+/* ---- saran item ---- */
+function itemSuggest(bUnits,comp){
+  const cu=carryUnit(bUnits,comp);
+  const front=bUnits.filter(u=>laneOf(u.h)==='front').sort((a,b)=>b.h.cost-a.h.cost);
+  const mage=bUnits.find(u=>(u.h.synergies||[]).includes('mage'));
+  return ENG.bag.map(id=>{
+    const e=EQUIPMENT.find(x=>x.id===id);if(!e)return null;
+    const cat=(e.category||'').toLowerCase();
+    let to=null,why='';
+    if(cat.includes('physical')){to=cu;why='physical → carry';}
+    else if(cat.includes('magic')){to=mage||cu;why='magic → mage/carry';}
+    else if(cat.includes('defense')){to=front[0]||cu;why='defense → frontline';}
+    else{to=cu;why='utility → carry';}
+    if(!to||(to.items||[]).length>=3)return null;
+    return{id,item:e.name,to:to.h.name,zone:to.zone,i:to.i,why};
+  }).filter(Boolean);
+}
+/* ---- PERINTAH ENGINE ---- */
+let _ordN=0;
+function ord(t,inner){return `<div class="ord"><span class="onum">${++_ordN}</span><div style="min-width:0"><div class="t">${t}</div><div class="d">${inner}</div></div></div>`;}
+function genOrders(){
+  const box=$('engOrders');
+  const units=engUnits();
+  const bUnits=units.filter(u=>u.zone==='board');
+  const bHeroes=bUnits.map(u=>u.h);
+  const allHeroes=units.map(u=>u.h);
+  let comp=targetComp;
+  if(!comp){const r=recommendFrom(allHeroes)[0];comp=r?r.c:null;}
+  _ordN=0;
+  let h=`<div class="secT" style="margin-top:0">📋 PERINTAH ENGINE · RONDE ${ENG.round}</div>`;
+  const nB=bUnits.length;
+  if(nB>ENG.level)h+=ord('⚠️ KELEBIHAN KAPASITAS',`Papan ${nB} hero tapi level ${ENG.level}. <b>Jual atau kembalikan ${nB-ENG.level} hero ke bangku</b> sebelum ronde mulai.`);
+  /* 1 — comp */
+  if(comp){
+    const owned=new Set(allHeroes.map(x=>x.name));
+    const core=comp.core_heroes||[];
+    const have=core.filter(x=>owned.has(x));
+    const miss=core.filter(x=>!owned.has(x));
+    const cN=comp.carry;
+    miss.sort((a,b)=>{
+      const ac=a===cN?1:0,bc=b===cN?1:0;
+      if(bc!==ac)return bc-ac;
+      return ((byNameH(b)||{cost:0}).cost)-(((byNameH(a)||{cost:0}).cost));
+    });
+    const syns=activeSyn(synCounts(bHeroes)).filter(a=>a.level>0);
+    h+=`<div class="card" style="border-color:var(--acc)"><div style="font-weight:800">🎯 ${comp.name}</div>
+      <div class="dim">Progress: <b>${have.length}/${core.length}</b> hero inti · Sinergi aktif: ${syns.length?syns.map(a=>a.syn.name+' '+a.count).join(', '):'-'}</div>
+      ${miss.length?`<div style="margin-top:6px"><b>🔎 Incaran:</b><br>${miss.slice(0,6).map(x=>{const hh=byNameH(x);return `<span class="thr">${x===cN?'🔥 ':''}${x}${hh?' · '+hh.cost+'💰':''}</span>`;}).join('')}</div>`:'<div class="dim">✅ Semua hero inti sudah ada!</div>'}
+    </div>`;
+  }else{
+    h+=`<div class="card"><div class="dim">Taruh beberapa hero di papan/bangku dulu biar engine bisa menentukan comp.</div></div>`;
+  }
+  /* 2 — shop */
+  const shopList=ENG.shop.filter(Boolean);
+  if(shopList.length){
+    const res=judgeShop(bHeroes.map(x=>x.id),shopList,comp);
+    const order={'BELI':0,'PERTIMBANGKAN':1,'SKIP':2};
+    res.sort((a,b)=>order[a.verdict]-order[b.verdict]);
+    h+=`<div class="secT">🛒 SHOP — EKSEKUSI SEKARANG</div>`;
+    res.forEach(r=>{
+      h+=ord(`${r.h.name} <span class="v-${r.verdict}">${r.verdict}</span>`,
+        `<span class="dim">${r.reasons.join(' · ')}</span>`+
+        (r.verdict==='BELI'?`<br><button class="btn small" style="margin-top:6px" onclick="engBuy('${r.h.id}')">+ Beli → bangku</button>`:''));
+    });
+  }else{
+    h+=ord('🛒 Shop','<span class="dim">Shop masih kosong — isi dulu 5 hero yang muncul di game.</span>');
+  }
+  /* 3 — star up */
+  const cnt={};
+  units.forEach(u=>{const k=u.id+'|'+u.star;cnt[k]=(cnt[k]||0)+1;});
+  const adv=[];
+  Object.keys(cnt).forEach(k=>{
+    const sp=k.split('|'),id=sp[0],st=+sp[1],c=cnt[k],hh=byIdH(id);
+    if(st===1&&c===2)adv.push(`⭐ <b>${hh.name}</b> sudah sepasang — <b>cari 1 lagi</b> untuk ★2.`);
+    if(st===2&&c===2)adv.push(`⭐ <b>${hh.name}</b> ★2 sepasang — <b>cari 1 lagi</b> untuk ★3${hh.carry?' 🔥':''}.`);
+  });
+  const coreNames=new Set(comp?(comp.core_heroes||[]):[]);
+  units.filter(u=>u.zone==='bench').forEach(u=>{
+    if(!coreNames.has(u.h.name)&&u.star===1&&!(cnt[u.id+'|1']>=2))
+      adv.push(`🗑️ <b>${u.h.name}</b> di bangku tidak masuk rencana — <button class="btn small ghost" onclick="engSell('bench',${u.i});genOrders()">Jual</button>`);
+  });
+  if(adv.length)h+=`<div class="secT">⭐ STAR-UP & BANGKU</div>`+adv.map(a=>`<div class="strat">${a}</div>`).join('');
+  /* 4 — ekonomi */
+  const ea=econAdvice(ENG.gold,ENG.level,engStreakStr());
+  h+=`<div class="secT">💰 EKONOMI</div><div class="card" style="border-color:var(--grn)">
+    <div style="font-size:15px;margin-bottom:6px">${ea.title}</div>
+    <div class="dim" style="margin-bottom:6px">Interest: <b style="color:var(--acc)">+${ea.interest}</b> · Archetype: <b>${ea.arch}</b></div>
+    ${ea.acts.map(a=>`<div class="strat">${a}</div>`).join('')}</div>`;
+  /* 5 — positioning */
+  const ps=posSuggest(bUnits,comp);
+  if(ps.length){
+    h+=`<div class="secT">📍 POSITIONING</div>`+ps.map(s=>`<div class="strat">${s}</div>`).join('')
+      +`<button class="btn ghost" style="width:100%;margin-bottom:8px" onclick="autoPosition()">✨ Atur posisi otomatis</button>`;
+  }
+  /* 6 — item */
+  if(ENG.bag.length){
+    const si=itemSuggest(bUnits,comp);
+    h+=`<div class="secT">🛠️ ITEM</div>`;
+    h+=si.length?si.map(s=>`<div class="strat">Kasih <b>${s.item}</b> ke <b>${s.to}</b> <span class="dim">(${s.why})</span><br><button class="btn small" style="margin-top:6px" onclick="engGiveItem('${s.zone}',${s.i},'${s.id}');genOrders()">Pasang</button></div>`).join('')
+      :'<div class="dim">Item di tas belum ada pemegang yang cocok.</div>';
+  }
+  box.innerHTML=h;
+  setTimeout(()=>{const el=$('engOrders');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},50);
+}
+function engNextRound(){
+  ENG.round++;ENG.shop=new Array(5).fill(null);ENG.move=null;
+  saveEng();renderEng();$('engOrders').innerHTML='';
+  const sc=$('tabEng').querySelector('.scroll');if(sc)sc.scrollTop=0;
+}
+function engReset(){
+  if(confirm('Reset semua data engine?')){ENG=defEng();saveEng();renderEng();$('engOrders').innerHTML='';}
 }
 </script>
 </body>

@@ -16,8 +16,8 @@ header{flex:0 0 auto;padding:10px 12px 6px;border-bottom:1px solid var(--line);}
 header .ttl{font-weight:800;font-size:15px;letter-spacing:.5px;}
 header .ttl b{color:var(--acc);}
 header .sub{font-size:11px;color:var(--dim);}
-nav{flex:0 0 auto;display:flex;border-bottom:1px solid var(--line);}
-nav button{flex:1;background:none;border:none;color:var(--dim);font-size:12px;font-weight:700;padding:11px 4px;cursor:pointer;border-bottom:2px solid transparent;}
+nav{flex:0 0 auto;display:flex;border-bottom:1px solid var(--line);overflow-x:auto;}
+nav button{flex:0 0 auto;background:none;border:none;color:var(--dim);font-size:12px;font-weight:700;padding:11px 12px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
 nav button.on{color:var(--acc);border-bottom-color:var(--acc);}
 main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 .tab{display:none;height:100%;flex-direction:column;padding:10px 12px;overflow:hidden;}
@@ -71,7 +71,8 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 <body>
 <header><div class="ttl">♟️ <b>MC</b> Lineup Coach</div><div class="sub" id="dataInfo">Magic Chess · Season 7.1</div></header>
 <nav>
-<button class="on" onclick="goTab('tabArah',this)">🧭 Arah</button>
+<button class="on" onclick="goTab('tabCmd',this)">🧑‍✈️ Commander</button>
+<button onclick="goTab('tabArah',this)">🧭 Arah</button>
 <button onclick="goTab('tabJuri',this)">⚡ Juri Shop</button>
 <button onclick="goTab('tabEcon',this)">💰 Ekonomi</button>
 <button onclick="goTab('tabTutor',this)">🎓 Tutorial</button>
@@ -79,7 +80,14 @@ main{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;}
 <button onclick="goTab('tabData',this)">📚 Data</button>
 </nav>
 <main>
-<div class="tab on" id="tabArah">
+<div class="tab on" id="tabCmd"><div class="scroll" style="padding-bottom:8px">
+  <div class="dim" style="margin-bottom:6px">Pilih commander seperti di lobby game — semua rekomendasi comp, shop & ekonomi akan menyesuaikan.</div>
+  <div class="search"><input id="qc" placeholder="Cari commander…" oninput="renderCommanders()"></div>
+  <div class="grid" id="cmdGrid" style="flex:0 1 auto"></div>
+  <div id="cmdDetail" style="margin-top:8px"></div>
+</div></div>
+<div class="tab" id="tabArah">
+  <div id="arahCmdBanner"></div>
   <div class="dim" style="margin-bottom:6px">Pilih hero yang dikasih shop di <b>awal game</b> (3–6 hero) — app yang mutusin kamu main comp apa.</div>
   <div class="search"><input id="qa" placeholder="Cari hero…" oninput="renderEarly()"></div>
   <div class="grid" id="earlyGrid"></div>
@@ -163,7 +171,7 @@ async function loadData(){
   HEROES=h.heroes;SYNERGIES=s.synergies;COMMANDERS=c.commanders;EQUIPMENT=e.equipment;COMPS=m.comps;ECON=ec;GUIDES=(gu.guides||gu);
   $('dataInfo').textContent=`Magic Chess · ${HEROES.length} hero · ${SYNERGIES.length} sinergi · patch 7.1`;
   renderEarly();renderBoardP();renderShopP();renderMeta();buildDataChips();renderDataList();renderTarget();
-  buildEconChips();renderEconPlaybook();buildTutorChips();renderGuides();
+  buildEconChips();renderEconPlaybook();buildTutorChips();renderGuides();renderCommanders();renderArahBanner();
 }
 /* ============ ENGINE ============ */
 const byIdH=id=>HEROES.find(h=>h.id===id);
@@ -202,8 +210,10 @@ function recommendDirection(){
     const core=c.core_heroes||[];
     const hit=core.filter(n=>names.has(n)).length;
     const synHit=compKeys(c).filter(k=>esyns.has(k)).length;
-    const score=hit*10+synHit*4;
-    return{c,hit,synHit,score};
+    const cmdName=activeCommander?(COMMANDERS.find(x=>x.id===activeCommander)||{}).name:null;
+    const cmdMatch=cmdName&&c.commander===cmdName;
+    const score=hit*10+synHit*4+(cmdMatch?15:0);
+    return{c,hit,synHit,score,cmdMatch};
   }).filter(r=>r.score>0).sort((a,b)=>b.score-a.score).slice(0,3);
 }
 /* --- Juri shop: nilai tiap hero di shop --- */
@@ -290,7 +300,7 @@ function doArah(){
   recs.forEach((r,i)=>{
     const c=r.c;
     h+=`<div class="card" style="${i===0?'border-color:var(--acc)':''}">
-      <div style="font-weight:800">${i===0?'⭐ ':''}${c.name} <span class="dim">· ${r.hit} hero cocok${r.synHit?` · ${r.synHit} sinergi nyambung`:''}</span></div>
+      <div style="font-weight:800">${i===0?'⭐ ':''}${c.name} <span class="dim">· ${r.hit} hero cocok${r.synHit?` · ${r.synHit} sinergi nyambung`:''}${r.cmdMatch?' · 🧑‍✈️ cocok commandermu':''}</span></div>
       <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
       <div>${(c.core_heroes||[]).slice(0,9).map(n=>{const hh=byNameH(n);
         return hh?`<span class="comp-hero ${earlyIds.includes(hh.id)?'owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${earlyIds.includes(hh.id)?'<span class="chk">✅</span>':''}</span>`:'';}).join('')}</div>
@@ -315,8 +325,9 @@ function renderTarget(){
   }
   const c=targetComp,owned=new Set(boardIds.map(byIdH).filter(Boolean).map(h=>h.name));
   const have=(c.core_heroes||[]).filter(n=>owned.has(n)).length;
+  const cmdLine=activeCommander?` · 🧑‍✈️ ${(COMMANDERS.find(x=>x.id===activeCommander)||{}).name}`:'';
   b.innerHTML=`<span style="font-size:20px">🎯</span><div><div style="font-weight:800">${c.name}</div>
-    <div class="dim">${have}/${(c.core_heroes||[]).length} hero inti terkumpul ${c.commander?`· 👑 ${c.commander}`:''} ${c.carry?`· 🔥 ${c.carry}`:''}</div></div>
+    <div class="dim">${have}/${(c.core_heroes||[]).length} hero inti terkumpul${cmdLine}${c.commander?` · 👑 saran: ${c.commander}`:''}${c.carry?` · 🔥 ${c.carry}`:''}</div></div>
     <button class="btn ghost small" style="margin-left:auto" onclick="targetComp=null;renderTarget()">Ganti</button>`;
   cp.innerHTML=`<div>${(c.core_heroes||[]).slice(0,10).map(n=>{const hh=byNameH(n);
     return hh?`<span class="comp-hero${owned.has(n)?' owned':''}">${heroImg(hh)}<span class="nm">${hh.name}</span>${owned.has(n)?'<span class="chk">✅</span>':''}</span>`:`<span class="comp-hero"><span class="nm">${n}</span></span>`;}).join('')}</div>`;
@@ -410,9 +421,15 @@ function doEcon(){
   const arch=cc==null?'umum':cc<=2?`Reroll (carry ${cc}💰)`:cc===3?`Reroll/Standar (carry ${cc}💰)`:cc>=5?`Legend rush (carry ${cc}💰)`:`Standar (carry ${cc}💰)`;
   const acts=[];
   let title;
-  if(g<10){title='💰 <b>SIMPAN TOTAL</b>';acts.push('Kejar 10 gold dulu biar interest jalan. Jangan beli apa pun kecuali hero inti comp.');}
+  const cmdNote=activeCommander?CMD_ECON[activeCommander]:null;
+  if(activeCommander==='lancelot'){
+    title='🗡️ <b>MODE LANCELOT</b>';
+    acts.push('Abaikan garis 20 gold — Lancelot kasih gold flat menang/kalah tapi tanpa interest. <b>Belanja agresif</b>, kejar power spike cepat.');
+  }
+  else if(g<10){title='💰 <b>SIMPAN TOTAL</b>';acts.push('Kejar 10 gold dulu biar interest jalan. Jangan beli apa pun kecuali hero inti comp.');}
   else if(g<20){title='💰 <b>SIMPAN</b>';acts.push(`Kurang <b>${need} gold</b> menuju garis 20 (+4 interest maksimal). Belanja hanya untuk hero inti comp.`);}
   else{title='✅ <b>ECON AMAN</b>';acts.push('Interest maksimal (+4) terkunci di 20 gold. Gold di atas 20 boleh dipakai.');}
+  if(cmdNote&&activeCommander!=='lancelot')acts.push(cmdNote);
   if(arch.startsWith('Reroll'))acts.push('🎲 <b>Slow roll:</b> roll secukupnya tapi JANGAN turun di bawah 20 gold. Target: carry bintang 3.');
   else if(arch.startsWith('Legend'))acts.push('👑 <b>Push level:</b> level 9 = checkpoint normal, lanjut ke 10 kalau gold berlebih. Simpan semua gold; roll hanya saat board sudah stabil.');
   else if(arch.startsWith('Standar'))acts.push('📈 <b>Naik level dulu</b> (8–9), baru roll di atas 20 gold untuk cari carry.');
@@ -484,7 +501,69 @@ function renderGuides(){
   L.innerHTML=list.length?list.map(guideCard).join(''):'<div class="empty">Belum ada panduan untuk topik ini.</div>';
 }
 </script>
+<script>
+/* ============ COMMANDER ============ */
+let activeCommander=null;
+const CMD_ECON={
+  lancelot:'🗡️ <b>Lancelot:</b> skip interest total — belanja agresif, kejar power spike cepat.',
+  chou:'🥋 <b>Chou:</b> extra gold tiap ronde — econ lebih longgar dari biasa.',
+  benny:'🎩 <b>Benny:</b> bisa kasih free EXP — lebih mudah kejar level tinggi.',
+  eva:'🌸 <b>Eva:</b> boost kekuatan hero + ekonomi.',
+  lukas:'🦁 <b>Lukas:</b> reward win streak — prioritaskan jaga streak menang.',
+  brody:'🌑 <b>Brody:</b> Abyss Domain tiap 4 ronde; ambil kartu "Brody\'s Power" di awal untuk gold + interest.'
+};
+function cmdColor(name){let h=0;for(const ch of name)h=(h*31+ch.charCodeAt(0))%360;return `hsl(${h},60%,42%)`;}
+function renderCommanders(){
+  const q=($('qc').value||'').toLowerCase();
+  const g=$('cmdGrid');if(!g)return;g.innerHTML='';
+  COMMANDERS.filter(c=>c.name.toLowerCase().includes(q))
+    .sort((a,b)=>((b.meta?1:0)-(a.meta?1:0))||a.name.localeCompare(b.name)).forEach(c=>{
+    const d=document.createElement('div');
+    d.className='hero'+(activeCommander===c.id?' sel':'');
+    d.innerHTML=`${c.meta?'<span class="carry">⭐</span>':''}<div style="width:44px;height:44px;border-radius:50%;background:${cmdColor(c.name)};display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800">${c.name[0]}</div><span class="nm">${c.name}</span>`;
+    d.onclick=()=>showCommander(c.id);
+    g.appendChild(d);
+  });
+}
+function showCommander(id){
+  const c=COMMANDERS.find(x=>x.id===id);if(!c)return;
+  const sk=(c.skills||[]).filter(s=>s.name&&s.name!=='Unverified');
+  const comps=COMPS.filter(m=>m.commander===c.name);
+  $('cmdGrid').style.display='none';
+  $('cmdDetail').innerHTML=`<div class="card">
+    <button class="btn ghost small" onclick="$('cmdGrid').style.display='grid';$('cmdDetail').innerHTML=''">‹ Semua commander</button>
+    <div style="display:flex;align-items:center;gap:10px;margin:10px 0">
+      <div style="width:52px;height:52px;border-radius:50%;background:${cmdColor(c.name)};display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800">${c.name[0]}</div>
+      <div><div style="font-size:16px;font-weight:800">${c.name}</div><div class="dim">${c.meta?'⭐ meta':''} ${c.category||''}</div></div>
+    </div>
+    ${sk.map(s=>`<div class="strat">✨ <b>${s.name}</b><br><span class="dim">${s.description||''}</span></div>`).join('')||'<div class="dim">Skill detail belum terverifikasi (S7).</div>'}
+    ${c.notes?`<div class="dim" style="margin:4px 0">📝 ${c.notes}</div>`:''}
+    ${CMD_ECON[c.id]?`<div class="strat">${CMD_ECON[c.id]}</div>`:''}
+    ${comps.length?`<div class="secT">🎯 COMP COCOK DENGAN ${c.name.toUpperCase()}</div>`+comps.map(m=>`<div class="synrow"><span class="dot" style="background:var(--grn)"></span><div style="flex:1"><div class="nm">${m.name}</div></div><button class="btn small" onclick="setTarget('${m.id}')">▶ Pakai</button></div>`).join(''):`<div class="dim" style="margin:6px 0">Belum ada meta comp tercatat untuk commander ini — pakai tab 🧭 Arah untuk cari comp dari hero awalmu.</div>`}
+    <button class="btn" style="margin-top:8px" onclick="setCommander('${c.id}')">▶ Pakai ${c.name} sebagai Commander</button>
+  </div>`;
+}
+function setCommander(id){
+  activeCommander=id;
+  $('cmdGrid').style.display='grid';$('cmdDetail').innerHTML='';
+  renderCommanders();renderArahBanner();renderTarget();
+  const tabs=document.querySelectorAll('nav button');
+  goTab('tabArah',tabs[1]);
+}
+function renderArahBanner(){
+  const b=$('arahCmdBanner');if(!b)return;
+  if(!activeCommander){
+    b.innerHTML=`<div class="banner" style="border-color:var(--line);background:#141c30"><span style="font-size:20px">🧑‍✈️</span><span class="dim">Belum pilih commander — <b>pilih dulu di tab Commander</b> seperti di lobby game.</span></div>`;
+    return;
+  }
+  const c=COMMANDERS.find(x=>x.id===activeCommander);
+  b.innerHTML=`<div class="banner"><div style="width:36px;height:36px;border-radius:50%;background:${cmdColor(c.name)};display:flex;align-items:center;justify-content:center;font-weight:800;flex:0 0 auto">${c.name[0]}</div>
+    <div><div style="font-weight:800">🧑‍✈️ ${c.name}</div><div class="dim">Rekomendasi comp menyesuaikan commandermu</div></div>
+    <button class="btn ghost small" style="margin-left:auto" onclick="goTab('tabCmd',document.querySelectorAll('nav button')[0])">Ganti</button></div>`;
+}
+</script>
 </body>
 </html>
+
 
 

@@ -425,7 +425,7 @@ function buyHero(id){
 function renderMeta(){
   const box=$('metaList');
   box.innerHTML=COMPS.map(c=>`<div class="card">
-    <div class="t" style="font-weight:800">${c.name} ${c.unverified?'<span class="dim">(belum terverifikasi)</span>':''}</div>
+    <div class="t" style="font-weight:800">${c.custom_brew?'<span class="thr">🧪 Racikan Jewel</span> ':''}${c.name} ${c.unverified?'<span class="dim">(belum terverifikasi)</span>':''}</div>
     <div class="dim" style="margin:4px 0">${(c.synergies||[]).map(s=>`<span class="thr">${s}</span>`).join('')}</div>
     <div>${(c.core_heroes||[]).map(n=>{const h=byNameH(n);return h?`<span class="comp-hero">${heroImg(h)}<span class="nm">${h.name}</span></span>`:`<span class="comp-hero"><span class="ph">?</span><span class="nm">${n}</span></span>`;}).join('')}</div>
     ${c.carry?`<div class="strat">🔥 Carry: <b>${c.carry}</b>${c.items&&c.items.length?` — item: ${c.items.slice(0,3).join(', ')}`:''}</div>`:''}

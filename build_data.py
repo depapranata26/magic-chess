@@ -507,11 +507,11 @@ MECHANICS = {
 }
 
 def comp(cid, name, patch, synergies, core_heroes, carry, items, commander,
-         early_game, unverified=False, notes=""):
+         early_game, unverified=False, notes="", custom_brew=False):
     return {"id": cid, "name": name, "patch": patch, "synergies": synergies,
             "core_heroes": core_heroes, "carry": carry, "items": items,
             "commander": commander, "early_game": early_game,
-            "unverified": unverified, "notes": notes}
+            "unverified": unverified, "notes": notes, "custom_brew": custom_brew}
 
 COMPS = [
     comp("kishin-phasewarper-shadeweaver", "6 Kishin 3 Phasewarper 3 Shadeweaver",
@@ -585,6 +585,31 @@ COMPS = [
          unverified=True,
          notes="From current S7 creator videos (Luo Yi commander). Exact hero board and item "
                "sets not specified."),
+    # ---- Racikan Jewel (custom brews, bukan meta komunitas) ----
+    comp("jewel-lubang-bruiser", "6 Bruiser 2 Weapon Master (Racikan 🧪)",
+         PATCH, ["Bruiser", "Weapon Master"],
+         ["Dyrroth", "Belerick", "Martis", "Aldous", "Paquito", "Yin", "Suyou", "Badang"],
+         "Badang", ["Golden Staff", "Haas' Claws", "Demon Hunter Sword"],
+         "Franco",
+         "Early: Dyrroth + Belerick + Martis, hemat gold, jangan roll. Mid (lv 6-7): lengkapkan "
+         "4 Bruiser, cari Bintang 2. Late (lv 8): 6 Bruiser + 2 Weapon Master; Bintang 3-kan hero "
+         "murah (Dyrroth, Belerick, Paquito). Item attack speed + lifesteal ke Badang/Yin, item "
+         "tank (Dominance Ice, Immortality) ke Belerick/Aldous. Posisi: gerombol di tengah, adu pukul.",
+         unverified=True, custom_brew=True,
+         notes="Racikan Jewel: comp full-melee out-of-the-box. Bruiser proc double-strike + lifesteal "
+               "satu tim = sustain adu pukul. Sepi kontes hero = gampang Bintang 3. Belum teruji di rank, "
+               "coba di casual dulu."),
+    comp("jewel-benteng-campuran", "4 Dauntless 2 Marksman 2 Mage (Racikan 🧪)",
+         PATCH, ["Dauntless", "Marksman", "Mage"],
+         ["Minotaur", "Balmond", "Miya", "Zhuxin", "Hilda", "Wanwan", "Kadita", "Lolita"],
+         "Wanwan", ["Golden Staff", "Glowing Wand", "Enchanted Talisman"],
+         "Guinevere",
+         "Hemat early, roll di lv 7-8 untuk Bintang 2 semua. Item tank ke Lolita/Hilda; item attack "
+         "speed ke Miya/Wanwan, item magic ke Zhuxin/Kadita. Tidak ada single carry — damage tersebar "
+         "fisik + magic sehingga tidak ada satu counter keras.",
+         unverified=True, custom_brew=True,
+         notes="Racikan Jewel: fondasi anti-counter (jack-of-all-trades). Kuat lawan semua, tidak seledak "
+               "comp 6-piece fokus. Belum teruji di rank, coba di casual dulu."),
 ]
 
 # ---------------- WRITE ----------------
